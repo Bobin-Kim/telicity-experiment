@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "dataset": {
+    "path": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+    "sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+    "items": 400,
+    "first_id": "A_001",
+    "last_id": "D_100"
+  },
+  "rendered_prompt": "System Prompt: You are a strict logician. Your task is to determine if a Hypothesis is necessarily true given a Premise.\nIf the Hypothesis MUST be true based only on the Premise, output \"True\".\nIf the Hypothesis is contradicted by the Premise, output \"False\".\nIf the Hypothesis might be true but is not explicitly guaranteed by the Premise, output \"Unknown\".\nDo not use common sense assumptions. Only use the text provided.<|im_start|>user\nUser Input: Premise: The carpenter was building a gazebo, but a storm destroyed the frame before the roof was on. Hypothesis: The carpenter built a gazebo.\nPlease respond with ONLY one of the following options: \"True\", \"False\", or \"Unknown\".<|im_end|>\n<|im_start|>assistant\n",
+  "prompt_token_count": 183,
+  "scoring_position": 182,
+  "tokenization": {
+    "mode": "first_answer_token_logit_margin",
+    "formula": "z_True - z_Unknown",
+    "verbalizer_token_ids": {
+      "True": [
+        11279
+      ],
+      "False": [
+        14761
+      ],
+      "Unknown": [
+        44854
+      ]
+    },
+    "scoring_token_ids": {
+      "True": 11279,
+      "Unknown": 44854
+    },
+    "alternatives_distinguishable": true
+  },
+  "fold_counts": {
+    "0": 80,
+    "1": 80,
+    "2": 80,
+    "3": 80,
+    "4": 80
+  },
+  "mode": "dry-run/config-and-tokenizer",
+  "model": "yi1.5-9b",
+  "source": "01-ai/Yi-1.5-9B-Chat",
+  "run_fingerprint": "15e455d3b58708be7bc509c47be2cd83bf5e3f577f54ef664b7fafd729aa80d2",
+  "stages": [
+    "behavior",
+    "cache",
+    "predictive_localization",
+    "causal_intervention",
+    "component_analysis",
+    "generator_localization",
+    "aggregate"
+  ],
+  "official": false
+}

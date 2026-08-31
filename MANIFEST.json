@@ -1,0 +1,225 @@
+{
+  "canonical_sources": [
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/qwen_full_depth_pipeline.py",
+      "sha256": "10f58d6a6b4546e3fc631c10d29cbc95f0e67732037af05027483d55b3f4c5ec"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_qwen_rq2bc_continuous.py",
+      "sha256": "00a720ff2a0be404af8c725ef6698d70cf9325c5001ad84981b0bece643ce072"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_qwen_full_depth_true_signal.py",
+      "sha256": "270aa1645c94e4af12537c4d5f30762189f1daead65d402fcbd2391898f672b5"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/analyze_qwen_full_depth_stage_a.py",
+      "sha256": "43fc1986c01b3a5223f70a38c78683ec651a749d6c6855ca4ee1b27ede46c0f0"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_qwen_onset_components.py",
+      "sha256": "339a85ef7eb670537471dc5cc28a08945f25419af73a2403965dba40e545e477"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/analyze_qwen_onset_components.py",
+      "sha256": "a12377c0c61db1b7a3132dc59001fd512dbd0de29b49ac14f08887ad74ce28b6"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_qwen_true_signal_mediation.py",
+      "sha256": "b83260772e6722bd86dcf1c41c9a0c0a887d322e81a9c5d21f1e8f48349af7db"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/aggregate_qwen_full_depth_true_signal.py",
+      "sha256": "6791d1e085b930754579e68e8adfe412ab882b7405217208ac4abebe6bf2ff0d"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_upstream_true_origin.py",
+      "sha256": "bd874f60a42e525c4d62392c5f3e55ea1dd363cf1d3822f924e47e19cef638f5"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/run_reproduction.py",
+      "sha256": "112da6780b52b06d3f5d0b8a6db180b50643373633e86c5096d3b0bea5b3fab3"
+    },
+    {
+      "path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_telicity_subspace_removal.py",
+      "sha256": "f94bac5dfb9e2b28b373c1323e7fc64f3a23cdc1bdcce49ab3e097a9c6b41586"
+    }
+  ],
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "files": [
+    {
+      "bytes": 4921,
+      "path": "README.md",
+      "sha256": "ffb90f3d9603c265286d35d5d036151db94693b4a3798a83d4310e7bd8042a08"
+    },
+    {
+      "bytes": 6982,
+      "path": "configs/multimodel_true_unknown_preference.yaml",
+      "sha256": "e52593fb300a5a17dd083298090ca35cabc064a1da086149bf8a3a8c0592560c"
+    },
+    {
+      "bytes": 141,
+      "path": "requirements.txt",
+      "sha256": "eb21714b3ea4ca2528928de1261c723dfd97d06afc2f7e7580097d52393dba33"
+    },
+    {
+      "bytes": 4829,
+      "path": "run_multimodel_preference.py",
+      "sha256": "38b9b97045c0e936553b826a7b3ee18d4ffd888a2037f08d28f14d529e8bfc6e"
+    },
+    {
+      "bytes": 2412,
+      "path": "scripts/build_manifest.py",
+      "sha256": "354c1c535f6fff110a8a1cd41e9a3347fa5cc11df2f97df35f95747162e53b1b"
+    },
+    {
+      "bytes": 290,
+      "path": "scripts/run_additional_models.sh",
+      "sha256": "91728c4b698a8b5c09d8b8c39ce6f08b963f19107985f8ca9ac2473f795b1419"
+    },
+    {
+      "bytes": 195,
+      "path": "scripts/run_mistral.sh",
+      "sha256": "86fbe1c142907cf9b841bc17ad54d82cb215f8f350877041d3f6d2a99e982cf2"
+    },
+    {
+      "bytes": 191,
+      "path": "scripts/run_qwen.sh",
+      "sha256": "a6c2a6ca14f7045eccedb45b05768b68631c0941da042618c32727d16032094c"
+    },
+    {
+      "bytes": 53,
+      "path": "src/__init__.py",
+      "sha256": "00d718b81b61b61ad2bba990f127aa067681198211a14edd2a9c8d71cbafc877"
+    },
+    {
+      "bytes": 2424,
+      "path": "src/model_adapters.py",
+      "sha256": "27f2af5c4b17192a1d119814d7bd20872bd3fd487fb7fe846590aedf620fe308"
+    },
+    {
+      "bytes": 1103,
+      "path": "src/model_registry.py",
+      "sha256": "694bbc77e4bdafd4848c8d9a1136766b09ca71571b00f703cdfbf382cdcb05ef"
+    },
+    {
+      "bytes": 1945,
+      "path": "src/output_validation.py",
+      "sha256": "e5c9be1dd55dc89954e00a401d0e43fe12b357b50eacd189347270cffcd99c3b"
+    },
+    {
+      "bytes": 17641,
+      "path": "src/pipeline_controller.py",
+      "sha256": "696f36b134c6ad50545aefe625609a5b8946e7b0699cd285b1abf50751920b1a"
+    },
+    {
+      "bytes": 1454,
+      "path": "src/preference_scorer.py",
+      "sha256": "90732cfcf05d7afb63aa2c1c9fd2afa4b03fd19804df729bb35e7003bf05784e"
+    },
+    {
+      "bytes": 3033,
+      "path": "src/preflight.py",
+      "sha256": "589168f805a2ec2319c9a7b47f47d05f8cf78780b0e8b2d167b955dce97c16eb"
+    },
+    {
+      "bytes": 2208,
+      "path": "tests/test_core.py",
+      "sha256": "ee94c1731e2f6f6e2a076602cfea8e129999396ad294d9500fd7d76f46e080aa"
+    },
+    {
+      "bytes": 616,
+      "path": "validation/DEEPSEEK_7B_REPORT.md",
+      "sha256": "e3d1bde639d33225f5e59fb21cbe439cbcada6608af9b1a59e3eb783c73a2b29"
+    },
+    {
+      "bytes": 568,
+      "path": "validation/GEMMA2_9B_REPORT.md",
+      "sha256": "65005d8ae06bb123ac44cd61e4e688ffa97aa3312332408e5cbb125aa3aa295d"
+    },
+    {
+      "bytes": 584,
+      "path": "validation/GLM4_9B_REPORT.md",
+      "sha256": "90d8867e4917854e9b46bc32841bd98ce407c5b4a8e96c95a3f514ac8084a2f6"
+    },
+    {
+      "bytes": 660,
+      "path": "validation/LLAMA31_8B_REPORT.md",
+      "sha256": "747f45bf6b9b6cdeeccb5a5df4dc74f97bdcda02afc01948af904c89911b9783"
+    },
+    {
+      "bytes": 1275,
+      "path": "validation/MISTRAL_PROTOCOL_REPORT.md",
+      "sha256": "f2f81f562e69737ea224708fafa7910dd4bd423c3836b90c6ab5da02d4f70a06"
+    },
+    {
+      "bytes": 2416,
+      "path": "validation/QWEN_EQUIVALENCE_REPORT.md",
+      "sha256": "8442f9edde3afbc6e54b498b33e1b64fd36e1d6fab1147f11ddd9b4e5c286d92"
+    },
+    {
+      "bytes": 882,
+      "path": "validation/SCORING_EVIDENCE.md",
+      "sha256": "1bd68fe810cf17c4306b9508e7ca662023c451d41e15e7ab04c10ae147c4cae0"
+    },
+    {
+      "bytes": 546,
+      "path": "validation/YI15_9B_REPORT.md",
+      "sha256": "3653edebddaf3922bc25f4c62503a3b7edece4a7bd2013b00c53c083cd61ba25"
+    },
+    {
+      "bytes": 1980,
+      "path": "validation/deepseek-7b-chat_dry_run.json",
+      "sha256": "506c87a6ed9af81cf95eba30e7417d1268bbb72f08c2595ebc2bfd8d99f8b3bd"
+    },
+    {
+      "bytes": 1944,
+      "path": "validation/glm4-9b_dry_run.json",
+      "sha256": "f1b079a67f7dc07078cf5fa8aa44d4578908768e02b319e57406dc39e3941d9c"
+    },
+    {
+      "bytes": 1972,
+      "path": "validation/mistral_dry_run.json",
+      "sha256": "79e131caa41a8d898cc3dfadbaa07e3e89e977dd1152713616a8264e01593f47"
+    },
+    {
+      "bytes": 2010,
+      "path": "validation/qwen_dry_run.json",
+      "sha256": "1f3123de97088a691f6db71d447cc1ab6147558640f7f81494440fec1cdafbc0"
+    },
+    {
+      "bytes": 437,
+      "path": "validation/qwen_equivalence_fixture.json",
+      "sha256": "72bb751556d983d84048eb2befaabfc854c44b5741fa24aa8a829c14b6cdc1ca"
+    },
+    {
+      "bytes": 2953,
+      "path": "validation/run_qwen_equivalence.py",
+      "sha256": "99e4a7155a927da40d0d485f016f3394226515647a9e074fd60c5a0bdd48b813"
+    },
+    {
+      "bytes": 1950,
+      "path": "validation/yi1.5-9b_dry_run.json",
+      "sha256": "511b455e5ecd6a774f7dd0c54997ae598ca1f5141584425538fed58592bb50da"
+    },
+    {
+      "note": "self-referential manifest; verify all other entries",
+      "path": "MANIFEST.json",
+      "sha256": null
+    }
+  ],
+  "generation_date": "2026-08-31",
+  "package": "MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER",
+  "package_version": "1.0.0",
+  "preference_only": true,
+  "scoring_mode": "first_answer_token_logit_margin",
+  "validation_status": {
+    "deepseek-7b-chat": "PASS tokenizer/config dry-run",
+    "gemma2-9b": "BLOCKED gated access",
+    "glm4-9b": "PASS tokenizer/config dry-run",
+    "llama3.1-8b": "BLOCKED gated access",
+    "mistral-7b-v03": "PASS protocol + live full-hook smoke",
+    "qwen2.5-7b": "PASS source-equivalence + live full-hook smoke",
+    "yi1.5-9b": "PASS tokenizer/config dry-run"
+  }
+}

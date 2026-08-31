@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "dataset": {
+    "path": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+    "sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+    "items": 400,
+    "first_id": "A_001",
+    "last_id": "D_100"
+  },
+  "rendered_prompt": "<s>[INST] System Prompt: You are a strict logician. Your task is to determine if a Hypothesis is necessarily true given a Premise.\nIf the Hypothesis MUST be true based only on the Premise, output \"True\".\nIf the Hypothesis is contradicted by the Premise, output \"False\".\nIf the Hypothesis might be true but is not explicitly guaranteed by the Premise, output \"Unknown\".\nDo not use common sense assumptions. Only use the text provided.\n\nUser Input: Premise: The carpenter was building a gazebo, but a storm destroyed the frame before the roof was on. Hypothesis: The carpenter built a gazebo.\nPlease respond with ONLY one of the following options: \"True\", \"False\", or \"Unknown\".[/INST]",
+  "prompt_token_count": 180,
+  "scoring_position": 179,
+  "tokenization": {
+    "mode": "first_answer_token_logit_margin",
+    "formula": "z_True - z_Unknown",
+    "verbalizer_token_ids": {
+      "True": [
+        6878
+      ],
+      "False": [
+        9018
+      ],
+      "Unknown": [
+        1703,
+        5485
+      ]
+    },
+    "scoring_token_ids": {
+      "True": 6878,
+      "Unknown": 1703
+    },
+    "alternatives_distinguishable": true
+  },
+  "fold_counts": {
+    "0": 80,
+    "1": 80,
+    "2": 80,
+    "3": 80,
+    "4": 80
+  },
+  "mode": "dry-run/config-and-tokenizer",
+  "model": "mistral-7b-v03",
+  "source": "/data/sl_datasets/models/mistralai/Mistral-7B-Instruct-v0.3",
+  "run_fingerprint": "8664bc310ebd9abcec0933eaf9e967b63e4d0efa63c61de857a110f8f7943832",
+  "stages": [
+    "behavior",
+    "cache",
+    "predictive_localization",
+    "causal_intervention",
+    "component_analysis",
+    "generator_localization",
+    "aggregate"
+  ],
+  "official": false
+}

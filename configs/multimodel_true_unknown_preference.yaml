@@ -1,0 +1,136 @@
+package_version: 1.0.0
+fixed_experiment_config:
+  protocol: continuous_true_unknown_preference_A23_A35
+  dataset_path: /home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json
+  dataset_sha256: ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a
+  expected_items: 400
+  expected_groups: {A: 100, B: 100, C: 100, D: 100}
+  labels: ["True", "False", "Unknown"]
+  alternatives: ["True", "Unknown"]
+  scoring_mode: first_answer_token_logit_margin
+  scoring_formula: z_True - z_Unknown
+  scoring_position: last_non_padding_prompt_token
+  system_prompt: |-
+    System Prompt: You are a strict logician. Your task is to determine if a Hypothesis is necessarily true given a Premise.
+    If the Hypothesis MUST be true based only on the Premise, output "True".
+    If the Hypothesis is contradicted by the Premise, output "False".
+    If the Hypothesis might be true but is not explicitly guaranteed by the Premise, output "Unknown".
+    Do not use common sense assumptions. Only use the text provided.
+  user_format: "User Input: Premise: {premise} Hypothesis: {hypothesis}\nPlease respond with ONLY one of the following options: \"True\", \"False\", or \"Unknown\"."
+  prompt_policy: tokenizer_chat_template_with_generation_prompt
+  prompt_contract_sha256: f82e03f1a711accb305259ec09e30d165ddaba3d9a445daccb0d069f8d19f016
+  folds: {count: 5, seed: 42, unit: verb, stratify: telic_atelic, assignment: shuffled_round_robin}
+  random_seed: 42
+  preference_basis: {components: 8, ridge_alpha: 10.0, k_thresholds: [0.5, 0.9]}
+  intervention: {steering_sd: 1.0, conditions: [decision_pos, decision_neg, random_pos, random_neg, subspace_remove, random_remove]}
+  stage_order: [behavior, cache, predictive_localization, causal_intervention, component_analysis, generator_localization, aggregate]
+  optional_stages: [upstream_source]
+  canonical_sources:
+    runner: /home/bobin/imperfective_paradox_repro/telicity_intervention/qwen_full_depth_pipeline.py
+    continuous_preference: /home/bobin/imperfective_paradox_repro/telicity_intervention/run_qwen_rq2bc_continuous.py
+    prompt: /home/bobin/imperfective_paradox_repro/run_reproduction.py
+    folds: /home/bobin/imperfective_paradox_repro/telicity_intervention/run_telicity_subspace_removal.py
+
+model_configs:
+  qwen2.5-7b:
+    model_id: Qwen/Qwen2.5-7B-Instruct
+    local_path: /data/sl_datasets/models/Qwen/Qwen2.5-7B-Instruct
+    tokenizer_id: Qwen/Qwen2.5-7B-Instruct
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: main
+    adapter: hf_decoder
+    architecture: Qwen2ForCausalLM
+    model_type: qwen2
+    dtype: float16
+    device_map: auto
+    trust_remote_code: false
+    geometry: {layers: 28, hidden_size: 3584, attention_heads: 28, kv_heads: 4, head_dim: 128}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
+  mistral-7b-v03:
+    model_id: mistralai/Mistral-7B-Instruct-v0.3
+    local_path: /data/sl_datasets/models/mistralai/Mistral-7B-Instruct-v0.3
+    tokenizer_id: mistralai/Mistral-7B-Instruct-v0.3
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: d79d1742f78eb0cc788c11e5b41a7539d7cb56ef
+    adapter: hf_decoder
+    architecture: MistralForCausalLM
+    model_type: mistral
+    dtype: float16
+    device_map: auto
+    trust_remote_code: false
+    geometry: {layers: 32, hidden_size: 4096, attention_heads: 32, kv_heads: 8, head_dim: 128}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
+  llama3.1-8b:
+    model_id: meta-llama/Meta-Llama-3.1-8B-Instruct
+    tokenizer_id: meta-llama/Meta-Llama-3.1-8B-Instruct
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: main
+    adapter: hf_decoder
+    architecture: LlamaForCausalLM
+    model_type: llama
+    dtype: float16
+    device_map: auto
+    trust_remote_code: false
+    gated: true
+    geometry: {layers: 32, hidden_size: 4096, attention_heads: 32, kv_heads: 8, head_dim: 128}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
+  yi1.5-9b:
+    model_id: 01-ai/Yi-1.5-9B-Chat
+    tokenizer_id: 01-ai/Yi-1.5-9B-Chat
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: main
+    adapter: hf_decoder
+    architecture: LlamaForCausalLM
+    model_type: llama
+    dtype: float16
+    device_map: auto
+    trust_remote_code: false
+    geometry: {layers: 48, hidden_size: 4096, attention_heads: 32, kv_heads: 4, head_dim: 128}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
+  deepseek-7b-chat:
+    model_id: deepseek-ai/deepseek-llm-7b-chat
+    tokenizer_id: deepseek-ai/deepseek-llm-7b-chat
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: main
+    adapter: hf_decoder
+    architecture: LlamaForCausalLM
+    model_type: llama
+    dtype: float16
+    device_map: auto
+    trust_remote_code: true
+    geometry: {layers: 30, hidden_size: 4096, attention_heads: 32, kv_heads: 32, head_dim: 128}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
+  gemma2-9b:
+    model_id: google/gemma-2-9b-it
+    tokenizer_id: google/gemma-2-9b-it
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: main
+    adapter: hf_decoder
+    architecture: Gemma2ForCausalLM
+    model_type: gemma2
+    dtype: float16
+    device_map: auto
+    trust_remote_code: false
+    gated: true
+    geometry: {layers: 42, hidden_size: 3584, attention_heads: 16, kv_heads: 8, head_dim: 256}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
+  glm4-9b:
+    model_id: zai-org/glm-4-9b-chat-hf
+    tokenizer_id: zai-org/glm-4-9b-chat-hf
+    tokenizer: {use_fast: true, padding_side: right}
+    chat_template: tokenizer_default
+    revision: d9b086c7372a8e9d48ae3d2c1e4b54e45be64b15
+    adapter: hf_decoder
+    architecture: GlmForCausalLM
+    model_type: glm
+    dtype: float16
+    device_map: auto
+    trust_remote_code: false
+    geometry: {layers: 40, hidden_size: 4096, attention_heads: 32, kv_heads: 2, head_dim: 128}
+    modules: {layers: model.layers, attention: self_attn, mlp: mlp, attention_output: self_attn, head_output_input: self_attn.o_proj, final_norm: model.norm, output_head: lm_head}
