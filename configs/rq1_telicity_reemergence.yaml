@@ -1,0 +1,37 @@
+schema_version: 1
+research_question: rq1
+title: Telicity representation and re-emergence
+base_model_registry: multimodel_true_unknown_preference.yaml
+scoring_contract:
+  mode: first_answer_token_logit_margin
+  formula: z_True - z_Unknown
+  position: last_non_padding_prompt_token
+execution:
+  locked_stage_order:
+    - reemergence_cache
+    - reemergence_sweep
+    - source_pathway
+    - reemergence_aggregate
+  optional_extension_stage: source_pathway_extended
+  resume_required: true
+  automatic_rq2: false
+logical_stages:
+  telicity_encoding:
+    implementation: reemergence_cache+reemergence_sweep
+  moving_telicity_erasure:
+    implementation: reemergence_sweep
+  downstream_reemergence:
+    implementation: reemergence_sweep+reemergence_aggregate
+  attention_mlp_recovery:
+    implementation: reemergence_sweep
+  depthwise_mechanism:
+    implementation: reemergence_aggregate
+  source_pathway_locked:
+    implementation: source_pathway
+    pathways: [residual, context_value, answer_query]
+  source_pathway_extension:
+    implementation: source_pathway_extended
+    status: optional_extension
+    pathways: [context_key, answer_gate]
+    changes_locked_normalization: false
+artifact_manifest: ../manifests/rq1_artifacts.json

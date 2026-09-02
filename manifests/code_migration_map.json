@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "migration_policy": "non-destructive logical ownership; historical paths remain unchanged",
+  "mappings": [
+    {
+      "old_path": "src/preflight.py",
+      "new_logical_owner": "src/common/data.py",
+      "research_question": "shared",
+      "status": "re-exported; original implementation retained"
+    },
+    {
+      "old_path": "src/model_registry.py + src/model_adapters.py",
+      "new_logical_owner": "src/common/modeling.py",
+      "research_question": "shared",
+      "status": "re-exported; original implementation retained"
+    },
+    {
+      "old_path": "src/preference_scorer.py",
+      "new_logical_owner": "src/common/scoring.py",
+      "research_question": "shared",
+      "status": "sole continuous scorer re-exported unchanged"
+    },
+    {
+      "old_path": "src/output_validation.py",
+      "new_logical_owner": "src/common/audit.py",
+      "research_question": "shared",
+      "status": "re-exported; original implementation retained"
+    },
+    {
+      "old_path": "src/reemergence.py",
+      "new_logical_owner": "src/rq1/runner.py + src/rq1/routing.py",
+      "research_question": "RQ1",
+      "status": "implementation retained; RQ1-only route added"
+    },
+    {
+      "old_path": "scripts/run_deepseek_reemergence.sh",
+      "new_logical_owner": "scripts/run_rq1.sh",
+      "research_question": "RQ1",
+      "status": "legacy model-specific launcher retained"
+    },
+    {
+      "old_path": "validation/run_deepseek_telicity_sweep.py",
+      "new_logical_owner": "RQ1 moving_telicity_erasure/downstream_reemergence",
+      "research_question": "RQ1",
+      "status": "historical implementation retained and manifested"
+    },
+    {
+      "old_path": "validation/run_deepseek_source_pathway.py",
+      "new_logical_owner": "RQ1 source_pathway_locked",
+      "research_question": "RQ1",
+      "status": "historical implementation retained and manifested"
+    },
+    {
+      "old_path": "validation/run_deepseek_full_analysis.py",
+      "new_logical_owner": "RQ1 telicity_encoding + RQ2.2 decision_signal_emergence",
+      "research_question": "legacy mixed ownership",
+      "status": "not routed by new entry points; outputs classified separately"
+    },
+    {
+      "old_path": "src/pipeline_controller.py::predictive_localization/causal_intervention",
+      "new_logical_owner": "src/rq2/runner.py::rq2.decision_signal_emergence",
+      "research_question": "RQ2.2",
+      "status": "stage-routed without moving implementation"
+    },
+    {
+      "old_path": "src/pipeline_controller.py::component_analysis/generator_localization",
+      "new_logical_owner": "src/rq2/runner.py::rq2.decision_circuit",
+      "research_question": "RQ2.3",
+      "status": "stage-routed without moving implementation"
+    },
+    {
+      "old_path": "src/pipeline_controller.py::upstream_source",
+      "new_logical_owner": "none (legacy correlation-only diagnostic)",
+      "research_question": "RQ2.6 invalid",
+      "status": "excluded from official RQ2 routing"
+    },
+    {
+      "old_path": "validation/run_deepseek_telicity_decision_control.py",
+      "new_logical_owner": "src/rq2/telicity_decision_relationship.py",
+      "research_question": "RQ2.5",
+      "status": "audited implementation retained at historical path"
+    },
+    {
+      "old_path": "scripts/run_deepseek_telicity_decision_control.py",
+      "new_logical_owner": "RQ2.5 model-specific reproducibility backend",
+      "research_question": "RQ2.5",
+      "status": "retained; generic RQ2 entry reuses manifest first"
+    },
+    {
+      "old_path": "results/deepseek-7b-rq2/rq2_2 + results/deepseek-7b-telicity-rq/full_depth_cache.npz",
+      "new_logical_owner": "src/rq2/deepseek_rq23_rq24.py",
+      "research_question": "RQ2.3 / RQ2.4",
+      "status": "audited RQ2.2 inputs reused; new fold shards are resumable and independently audited"
+    },
+    {
+      "old_path": "model-specific manual DeepSeek RQ2.3/RQ2.4 workflow",
+      "new_logical_owner": "scripts/run_deepseek_rq23_rq24.py",
+      "research_question": "RQ2.3 / RQ2.4",
+      "status": "packaged multi-GPU launcher; generic RQ2 entry reuses completed artifacts through the manifest"
+    },
+    {
+      "old_path": "/home/bobin/imperfective_paradox_repro/telicity_intervention/run_upstream_true_origin.py",
+      "new_logical_owner": "src/rq2/deepseek_rq26.py",
+      "research_question": "RQ2.6",
+      "status": "strict bidirectional A37 causal boundary transferred through the DeepSeek adapter; model-specific numerical findings remain in result files"
+    },
+    {
+      "old_path": "completed DeepSeek RQ2.5 + manual missing-origin workflow",
+      "new_logical_owner": "scripts/run_deepseek_rq25_rq26.py",
+      "research_question": "RQ2.5 / RQ2.6",
+      "status": "RQ2.5 read-only reaudit followed by resumable multi-GPU RQ2.6 execution"
+    },
+    {
+      "old_path": "/home/bobin/imperfective_paradox_repro/results/Mistral_RQ1_experiment_5",
+      "new_logical_owner": "RQ2 decision/relationship artifact ownership where applicable",
+      "research_question": "RQ2",
+      "status": "historical name retained; scientific ownership corrected only in manifests"
+    },
+    {
+      "old_path": "/home/bobin/imperfective_paradox_repro/results/mistral7b_decision_alignment_A36",
+      "new_logical_owner": "RQ2.5 invalid artifact",
+      "research_question": "RQ2.5",
+      "status": "audit FAIL; never routed as official"
+    },
+    {
+      "old_path": "/home/bobin/imperfective_paradox_repro/results/mistral7b_upstream_true_origin_A37",
+      "new_logical_owner": "RQ2.6 invalid artifact",
+      "research_question": "RQ2.6",
+      "status": "audit FAIL; never routed as official"
+    },
+    {
+      "old_path": "/home/bobin/imperfective_paradox_repro/results/cross_model_upstream_true_origin_A37",
+      "new_logical_owner": "RQ2.6 invalid cross-model aggregate",
+      "research_question": "RQ2.6",
+      "status": "audit FAIL; never routed as official"
+    }
+  ]
+}

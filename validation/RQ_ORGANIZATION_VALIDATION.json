@@ -1,0 +1,68 @@
+{
+  "checks": {
+    "canonical_scoring_locked": true,
+    "existing_result_hashes_preserved": true,
+    "failed_mistral_artifacts_invalid": true,
+    "locked_extended_pathways_separate": true,
+    "manifest_covers_every_local_result": true,
+    "manifest_paths_valid": true,
+    "manifest_schema_complete": true,
+    "model_alias_resolution": true,
+    "no_alternate_executable_scoring_stage": true,
+    "rq1_extension_is_optional": true,
+    "rq1_extension_plan_dry_run": true,
+    "rq1_locked_route": true,
+    "rq1_manifest_has_locked_and_extension": true,
+    "rq1_never_routes_rq2": true,
+    "rq1_plan_dry_run": true,
+    "rq1_tokenizer_config_dry_run": true,
+    "rq25_completed_artifact_reuse": true,
+    "rq2_cli_no_selector_fails": true,
+    "rq2_excludes_rq1_and_legacy_upstream": true,
+    "rq2_has_six_subquestions": true,
+    "rq2_plan_dry_run": true,
+    "rq2_requires_explicit_subquestion": true,
+    "rq2_tokenizer_config_dry_run": true,
+    "scientific_protocol_files_unchanged": true,
+    "shared_model_registry": true,
+    "yaml_parsing": true
+  },
+  "details": {
+    "dry_run_errors": {
+      "rq1": "",
+      "rq2": ""
+    },
+    "model_aliases": [
+      "qwen2.5-7b",
+      "mistral-7b-v03",
+      "llama3.1-8b",
+      "yi1.5-9b",
+      "deepseek-7b-chat",
+      "gemma2-9b",
+      "glm4-9b"
+    ],
+    "protocol_hashes_before_and_after": {
+      "configs/multimodel_true_unknown_preference.yaml": {
+        "after": "ffeeba14348ed28e117c89929dfa19e7fa0d32f3d8f733105d2988fd41aebd75",
+        "before": "ffeeba14348ed28e117c89929dfa19e7fa0d32f3d8f733105d2988fd41aebd75"
+      },
+      "src/preference_scorer.py": {
+        "after": "90732cfcf05d7afb63aa2c1c9fd2afa4b03fd19804df729bb35e7003bf05784e",
+        "before": "90732cfcf05d7afb63aa2c1c9fd2afa4b03fd19804df729bb35e7003bf05784e"
+      },
+      "src/preflight.py": {
+        "after": "2d5de934a6a4d3efb6bd453f94a591e7a677899598c5dbb93ce0188bf671223e",
+        "before": "2d5de934a6a4d3efb6bd453f94a591e7a677899598c5dbb93ce0188bf671223e"
+      }
+    },
+    "result_hash_file_count": 1347,
+    "routing_commands": {
+      "rq1": "/usr/bin/python /home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/run_multimodel_preference.py --config /home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/configs/multimodel_true_unknown_preference.yaml --model qwen2.5-7b --gpus  --stages reemergence_cache,reemergence_sweep,source_pathway,reemergence_aggregate --resume",
+      "rq1_extension": "/usr/bin/python /home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/run_multimodel_preference.py --config /home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/configs/multimodel_true_unknown_preference.yaml --model qwen2.5-7b --gpus  --stages reemergence_cache,reemergence_sweep,source_pathway,source_pathway_extended,reemergence_aggregate --resume",
+      "rq2_2": "{\n  \"status\": \"reuse\",\n  \"research_question\": \"RQ2.2\",\n  \"selector\": \"rq2.decision_signal_emergence\",\n  \"model\": \"qwen2.5-7b\",\n  \"implementation\": \"generic_pipeline\",\n  \"official_artifacts\": [\n    {\n      \"artifact_kind\": \"external_directory\",\n      \"audit_status\": \"PASS\",\n      \"classification\": \"RQ2.2 official\",\n      \"execution_status\": \"complete\",\n      \"existing_path\": \"/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2a_continuous_preference_A22\",\n      \"model_alias\": \"qwen2.5-7b\",\n      \"protocol_type\": \"continuous_margin_decoding\",\n      \"research_question\": \"RQ2\",\n      \"sha256\": null,\n      \"stage\": \"decision_signal_emergence\",\n      \"subquestion\": \"rq2.decision_signal_emergence\"\n    },\n    {\n      \"artifact_kind\": \"external_directory\",\n      \"audit_status\": \"PASS\",\n      \"classification\": \"RQ2.2 official\",\n      \"execution_status\": \"complete\",\n      \"existing_path\": \"/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2bc_continuous_preference_A23\",\n      \"model_alias\": \"qwen2.5-7b\",\n      \"protocol_type\": \"continuous_margin_intervention\",\n      \"research_question\": \"RQ2\",\n      \"sha256\": null,\n      \"stage\": \"causal_decision_emergence\",\n      \"subquestion\": \"rq2.decision_signal_emergence\"\n    }\n  ],\n  \"manifest\": \"/home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/manifests/rq2_artifacts.json\",\n  \"gpu_work_started\": false\n}"
+    }
+  },
+  "gpu_experiments_run": false,
+  "result_files_modified": false,
+  "status": "PASS"
+}

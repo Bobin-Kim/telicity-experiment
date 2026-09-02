@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "validation_scope": "live full-weight GPU-0 load plus generic re-emergence hook resolution",
+  "model": "deepseek-7b-chat",
+  "revision": "afbda8b347ec881666061fa67447046fc5164ec8",
+  "gpu": "Tesla V100-PCIE-32GB",
+  "layers": 30,
+  "hook_module_counts": {
+    "input_norm": 30,
+    "query": 30,
+    "key": 30,
+    "value": 30,
+    "gate": 30
+  },
+  "hook_classes": {
+    "input_norm": ["LlamaRMSNorm"],
+    "query": ["Linear"],
+    "key": ["Linear"],
+    "value": ["Linear"],
+    "gate": ["Linear"]
+  },
+  "live_layer_2_forward_hook_shapes": {
+    "query": [1, 153, 4096],
+    "key": [1, 153, 4096],
+    "value": [1, 153, 4096],
+    "gate": [1, 153, 11008]
+  },
+  "live_margin_finite": true,
+  "source_position_audit": {
+    "rows": 200,
+    "all_answer_positions_present": true,
+    "minimum_context_tokens": 3
+  },
+  "preference_scorer": {
+    "mode": "first_answer_token_logit_margin",
+    "True_first_token_id": 8173,
+    "Unknown_first_token_id": 21483,
+    "alternatives_distinguishable": true
+  },
+  "locked_pathways": ["residual", "context_value", "answer_query"],
+  "extended_pathways": ["residual", "context_value", "context_key", "answer_query", "answer_gate"],
+  "extended_full_numerical_run": "pending"
+}

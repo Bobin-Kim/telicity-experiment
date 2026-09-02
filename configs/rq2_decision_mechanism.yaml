@@ -1,0 +1,45 @@
+schema_version: 1
+research_question: rq2
+title: Decision formation, causal routing, and correction
+base_model_registry: multimodel_true_unknown_preference.yaml
+scoring_contract:
+  mode: first_answer_token_logit_margin
+  formula: z_True - z_Unknown
+  position: last_non_padding_prompt_token
+execution:
+  explicit_subquestion_required: true
+  automatic_after_rq1: false
+  reuse_completed_artifacts: true
+  excluded_legacy_stage: upstream_source
+subquestions:
+  rq2.representation_imbalance:
+    id: RQ2.1
+    title: Representation imbalance vs readout/routing imbalance
+    implementation: artifact_manifest
+    generic_stages: []
+  rq2.decision_signal_emergence:
+    id: RQ2.2
+    title: Decision signal emergence
+    implementation: generic_pipeline
+    generic_stages: [behavior, cache, predictive_localization, causal_intervention]
+  rq2.decision_circuit:
+    id: RQ2.3
+    title: Decision circuit and causal pathway
+    implementation: generic_pipeline
+    generic_stages: [behavior, cache, predictive_localization, causal_intervention, component_analysis, generator_localization]
+  rq2.selective_group_c_correction:
+    id: RQ2.4
+    title: Selective Group-C correction
+    implementation: artifact_manifest
+    generic_stages: []
+  rq2.telicity_decision_relationship:
+    id: RQ2.5
+    title: Relationship between Telicity information and the final decision
+    implementation: registered_backend_or_manifest
+    generic_stages: []
+  rq2.true_driving_origin:
+    id: RQ2.6
+    title: Origin of the Group-C True-driving signal
+    implementation: artifact_manifest
+    generic_stages: []
+artifact_manifest: ../manifests/rq2_artifacts.json

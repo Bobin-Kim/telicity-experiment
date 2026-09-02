@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "all_optional_stages_registered": true,
+    "deepseek_live_gpu_hook_preflight": true,
+    "deepseek_qkv_gate_modules_configured": true,
+    "existing_deepseek_locked_grid_405": true,
+    "first_token_scorer_unchanged": true,
+    "protocols_not_renormalized_together": true,
+    "yaml_extended_paths_exact": true,
+    "yaml_locked_paths_exact": true
+  },
+  "existing_locked_raw_rows": 405,
+  "existing_locked_raw_sha256": "df35f9e72cf4f097786cc28a221ce8151390de8c1a30e0e2f8004ba677b6e5ed",
+  "extended_pathways": [
+    "residual",
+    "context_value",
+    "context_key",
+    "answer_query",
+    "answer_gate"
+  ],
+  "gpu_validation": "live DeepSeek GPU-0 load and Q/K/V/G hook preflight PASS; existing locked run complete; extended K/G numerical run pending",
+  "locked_pathways": [
+    "residual",
+    "context_value",
+    "answer_query"
+  ],
+  "scientific_boundary": {
+    "extended": "new Context-K and Answer-Gate causal patches; no historical equivalence claim",
+    "locked": "historical Residual/Context-V/Answer-Q reproduction target"
+  },
+  "status": "PASS"
+}

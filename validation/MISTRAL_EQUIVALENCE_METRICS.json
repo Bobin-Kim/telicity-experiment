@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "date": "2026-08-31",
+  "behavior": {
+    "rows": 400,
+    "true_logit_exact": 400,
+    "unknown_logit_exact": 400,
+    "margin_exact": 400,
+    "max_abs_difference": 0.0
+  },
+  "residual_cache": {
+    "shape": [400, 32, 4096],
+    "exact_values": 52428800,
+    "total_values": 52428800,
+    "max_abs_difference": 0.0
+  },
+  "frozen_margin": {
+    "exact_values": 400,
+    "total_values": 400,
+    "max_abs_difference": 0.0
+  },
+  "decision_directions": {
+    "shape": [5, 32, 4096],
+    "exact_values": 655360,
+    "total_values": 655360,
+    "max_abs_difference": 0.0
+  },
+  "controls": {
+    "random_dirs_exact": 655360,
+    "random_dirs_total": 655360,
+    "scales_exact": 160,
+    "scales_total": 160,
+    "means_exact": 655360,
+    "means_total": 655360,
+    "max_abs_difference": 0.0
+  },
+  "localization": {
+    "layers": 32,
+    "max_abs_difference": 1.1102230246251565e-16,
+    "first_stable_layer_new": 6,
+    "first_stable_layer_original": 6,
+    "strongest_layer_new": 31,
+    "strongest_layer_original": 31
+  },
+  "intervention": {
+    "layers": [0, 16, 29, 31],
+    "folds": [0, 1, 2, 3, 4],
+    "rows": 6400,
+    "keys_equal": true,
+    "baseline_margin_exact": 6400,
+    "margin_exact": 6400,
+    "delta_margin_exact": 6400,
+    "shared_norm_exact": 6400,
+    "max_abs_difference": 0.0
+  }
+}
