@@ -10,12 +10,13 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def preference_runner_command(base_config: Path, model: str, gpus: str, stages: list[str],
                               output_dir: Path | None = None, dry_run: bool = False,
-                              batch_size: int | None = None) -> list[str]:
+                              batch_size: int | None = None,
+                              fold_profile: str = "confirmatory") -> list[str]:
     if not stages:
         raise ValueError("Fail-closed: refusing an empty stage route")
     command = [sys.executable, str(ROOT / "run_multimodel_preference.py"),
                "--config", str(base_config), "--model", model, "--gpus", gpus,
-               "--stages", ",".join(stages), "--resume"]
+               "--stages", ",".join(stages), "--resume", "--fold-profile", fold_profile]
     if output_dir is not None:
         command += ["--output-dir", str(output_dir.resolve())]
     if dry_run:

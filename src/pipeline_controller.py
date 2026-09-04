@@ -92,7 +92,7 @@ class PipelineController:
     def predictive_localization(self):
         if self.profile=="mistral_original_rq2_e345":return self._mistral_predictive_localization()
         z=np.load(self.out/"preference_cache.npz"); x=z["residual"].astype(float); y=z["margin"].astype(float); records=[]; selected=[]
-        for held in range(self.f["folds"]["count"]):
+        for held in self.requested_folds:
             tr=self.fold!=held; te=~tr; scores=[]
             for l in range(self.a.num_layers):
                 p=pred(ridge(x[tr,l],y[tr],self.f["preference_basis"]["ridge_alpha"]),x[te,l]); score=r2(y[te],p); records.append({"fold":held,"layer":l,"heldout_r2":score}); inner=[]
@@ -101,7 +101,7 @@ class PipelineController:
                     if va.any():inner.append(r2(y[va],pred(ridge(x[it,l],y[it]),x[va,l])))
                 scores.append((float(np.mean(inner)),l))
             best=max(scores); selected.append({"heldout_fold":held,"layer":best[1],"inner_cv_r2":best[0],"selection":"all-layer inner-CV; no prior layer"})
-        write_csv(self.out/"predictive_full_depth.csv",records); write_csv(self.out/"selected_layers.csv",selected); self.marker("predictive_localization",{"layers":self.a.num_layers,"folds":5})
+        write_csv(self.out/"predictive_full_depth.csv",records); write_csv(self.out/"selected_layers.csv",selected); self.marker("predictive_localization",{"layers":self.a.num_layers,"folds":self.requested_folds,"official_fold_coverage":len(self.requested_folds)==self.f["folds"]["count"]})
     def _mistral_predictive_localization(self):
         from sklearn.linear_model import Ridge
         from scipy.stats import pearsonr,spearmanr
@@ -110,15 +110,16 @@ class PipelineController:
             # Match the original script's default NumPy float (float64) OOF
             # buffer; Ridge inputs/targets remain float32 as in the source.
             oof=np.zeros(len(y),float)
-            for held in range(5):
+            for held in self.requested_folds:
                 tr=self.fold!=held;te=~tr;mu=x[tr,layer].mean(0);sd=x[tr,layer].std(0);sd[sd<1e-6]=1
                 fit=Ridge(alpha=float(self.f["preference_basis"]["ridge_alpha"])).fit((x[tr,layer]-mu)/sd,y[tr]);oof[te]=fit.predict((x[te,layer]-mu)/sd);v=fit.coef_/sd;dirs[held,layer]=v/max(float(np.linalg.norm(v)),1e-12)
                 score=r2(y[te].astype(float),oof[te].astype(float));fold_rows.append({"fold":held,"layer":layer,"heldout_r2":score})
                 for i in np.flatnonzero(te):pred_rows.append({"layer":layer,"fold":held,"example_id":self.rows[i]["id"],"margin":float(y[i]),"predicted_margin":float(oof[i])})
-            rr=r2(y.astype(float),oof.astype(float));pr=float(pearsonr(y,oof).statistic);sr=float(spearmanr(y,oof).statistic);summary.append({"layer":layer,"r2":rr,"pearson_r":pr,"spearman_rho":sr})
+            evaluated=np.isin(self.fold,self.requested_folds)
+            rr=r2(y[evaluated].astype(float),oof[evaluated].astype(float));pr=float(pearsonr(y[evaluated],oof[evaluated]).statistic);sr=float(spearmanr(y[evaluated],oof[evaluated]).statistic);summary.append({"layer":layer,"r2":rr,"pearson_r":pr,"spearman_rho":sr})
         np.save(self.out/"decision_directions.npy",dirs);write_csv(self.out/"predictive_full_depth.csv",fold_rows);write_csv(self.out/"localization_predictions.csv",pred_rows);write_csv(self.out/"localization_summary.csv",summary)
-        best=max(summary,key=lambda q:q["r2"]);selected=[{"heldout_fold":f,"layer":best["layer"],"oof_r2":best["r2"],"selection":"original Mistral global OOF strongest rank-1 ridge layer"} for f in range(5)];write_csv(self.out/"selected_layers.csv",selected)
-        stable=[q["layer"] for q in summary if q["r2"]>.05 and q["pearson_r"]>.25];self.marker("predictive_localization",{"layers":L,"folds":5,"axis_estimator":"standardized_rank1_ridge","first_stable_layer":min(stable) if stable else None,"strongest_layer":best["layer"]})
+        best=max(summary,key=lambda q:q["r2"]);selected=[{"heldout_fold":f,"layer":best["layer"],"oof_r2":best["r2"],"selection":"Mistral OOF strongest rank-1 ridge layer over requested folds"} for f in self.requested_folds];write_csv(self.out/"selected_layers.csv",selected)
+        stable=[q["layer"] for q in summary if q["r2"]>.05 and q["pearson_r"]>.25];self.marker("predictive_localization",{"layers":L,"folds":self.requested_folds,"official_fold_coverage":len(self.requested_folds)==5,"axis_estimator":"standardized_rank1_ridge","first_stable_layer":min(stable) if stable else None,"strongest_layer":best["layer"]})
     def _axis(self,x,y,tr):
         center=x[tr].mean(0); work=x.copy(); basis=[]
         for _ in range(self.f["preference_basis"]["components"]):
@@ -130,7 +131,7 @@ class PipelineController:
     def causal_intervention(self):
         if self.profile=="mistral_original_rq2_e345":return self._mistral_causal_intervention()
         z=np.load(self.out/"preference_cache.npz"); x=z["residual"].astype(float); y=z["margin"].astype(float); rows=[]; seed=self.f["random_seed"]
-        for held in range(5):
+        for held in self.requested_folds:
             tr=self.fold!=held; test=np.flatnonzero(~tr).tolist()
             for layer in range(self.a.num_layers):
                 center,basis,axis,sd=self._axis(x[:,layer],y,tr); rng=np.random.default_rng(seed+held*1000+layer); raw=rng.normal(size=(x.shape[-1],len(basis)));raw-=basis.T@(basis@raw);rbase=np.linalg.qr(raw)[0].T;rv=rbase[0];decision_dist=np.linalg.norm(((x[tr,layer]-center)@basis.T)@basis,axis=1).mean();random_dist=np.linalg.norm(((x[tr,layer]-center)@rbase.T)@rbase,axis=1).mean();rscale=float(decision_dist/max(random_dist,1e-12))
@@ -152,13 +153,13 @@ class PipelineController:
                         m=self.s.from_logits(o.logits,pos)["margin"].cpu().numpy()
                         for j,i in enumerate(inds):rows.append({"example_index":i,"example_id":self.rows[i]["id"],"group":self.rows[i]["group"][0],"heldout_fold":held,"layer":layer,"condition":cond,"baseline_margin":float(y[i]),"margin":float(m[j]),"delta_margin":float(m[j]-y[i])})
         write_csv(self.out/"causal_full_depth.csv",rows)
-        for held in range(5):
+        for held in self.requested_folds:
             for layer in range(self.a.num_layers):
                 shard=[r for r in rows if r["heldout_fold"]==held and r["layer"]==layer];d=self.out/"stage_a"/f"L{layer:02d}"/f"fold{held}";write_csv(d/"interventions.csv",shard);atomic_json(d/"complete.json",{"status":"complete","fold":held,"layer":layer,"rows":len(shard),"run_fingerprint":self.fp})
-        self.marker("causal_intervention",{"rows":len(rows),"layers":self.a.num_layers,"conditions":self.f["intervention"]["conditions"]})
+        self.marker("causal_intervention",{"rows":len(rows),"layers":self.a.num_layers,"folds":self.requested_folds,"official_fold_coverage":len(self.requested_folds)==self.f["folds"]["count"],"conditions":self.f["intervention"]["conditions"]})
     def _mistral_controls(self,hidden,dirs):
         rng=np.random.default_rng(self.f["random_seed"]+int(self.compat["control_seed_offset"]));L=self.a.num_layers;random_dirs=np.zeros_like(dirs,np.float32);scales=np.zeros((5,L),np.float32);means=np.zeros((5,L,hidden.shape[-1]),np.float32);floor=float(self.compat["scale_floor"])
-        for held in range(5):
+        for held in self.requested_folds:
             tr=self.fold!=held
             for layer in range(L):
                 v=dirs[held,layer].astype(np.float64);v/=np.linalg.norm(v);r=rng.normal(size=len(v));r-=v*(r@v);r/=np.linalg.norm(r);random_dirs[held,layer]=r;x=hidden[tr,layer].astype(np.float32);means[held,layer]=x.mean(0);xc=x-means[held,layer];sds=[]
@@ -191,7 +192,7 @@ class PipelineController:
         z=np.load(self.out/"preference_cache.npz"); y=z["margin"].astype(float); out=[]; heads=[]
         for comp in ("residual","attention","mlp"):
             x=z[comp].astype(float)
-            for held in range(5):
+            for held in self.requested_folds:
                 tr=self.fold!=held;te=~tr
                 for l in range(self.a.num_layers):
                     inner=[]
@@ -200,14 +201,14 @@ class PipelineController:
                         if va.any():inner.append(r2(y[va],pred(ridge(x[it,l],y[it]),x[va,l])))
                     out.append({"component":comp,"fold":held,"layer":l,"heldout_r2":r2(y[te],pred(ridge(x[tr,l],y[tr]),x[te,l])),"inner_cv_r2":float(np.mean(inner))})
         hx=z["head"].astype(float).reshape(len(y),self.a.num_layers,self.a.num_heads,self.a.head_dim)
-        for held in range(5):
+        for held in self.requested_folds:
             tr=self.fold!=held;te=~tr
             for l in range(self.a.num_layers):
                 for h in range(self.a.num_heads):heads.append({"fold":held,"layer":l,"head":h,"heldout_r2":r2(y[te],pred(ridge(hx[tr,l,h],y[tr]),hx[te,l,h]))})
         write_csv(self.out/"component_full_depth.csv",out);write_csv(self.out/"head_full_depth.csv",heads)
         # Candidate layers are selected independently inside each outer fold, then tested by actual forward intervention.
         causal=[]
-        for held in range(5):
+        for held in self.requested_folds:
             tr=self.fold!=held;test=np.flatnonzero(~tr).tolist()
             for comp in ("attention","mlp"):
                 candidates=[r for r in out if r["component"]==comp and r["fold"]==held];layer=max(candidates,key=lambda q:q["inner_cv_r2"])["layer"]
@@ -227,9 +228,9 @@ class PipelineController:
                         m=self.s.from_logits(o.logits,pos)["margin"].cpu().numpy()
                         for j,i in enumerate(inds):causal.append({"component":comp,"layer":layer,"head":-1,"heldout_fold":held,"example_id":self.rows[i]["id"],"condition":cond,"baseline_margin":float(y[i]),"margin":float(m[j]),"delta_margin":float(m[j]-y[i])})
         write_csv(self.out/"component_causal.csv",causal)
-        for held in range(5):
+        for held in self.requested_folds:
             shard=[r for r in causal if r["heldout_fold"]==held];d=self.out/"stage_b_onset"/f"fold{held}";write_csv(d/"interventions.csv",shard);entities={(r["component"],r["layer"],r["head"]) for r in shard};atomic_json(d/"complete.json",{"status":"complete","fold":held,"rows":len(shard),"entities":len(entities),"run_fingerprint":self.fp})
-        self.marker("component_analysis",{"components":["residual","attention","mlp","heads"],"layers":self.a.num_layers,"causal_controls":["decision_pos","decision_neg","random_pos","random_neg"]})
+        self.marker("component_analysis",{"components":["residual","attention","mlp","heads"],"layers":self.a.num_layers,"folds":self.requested_folds,"official_fold_coverage":len(self.requested_folds)==self.f["folds"]["count"],"causal_controls":["decision_pos","decision_neg","random_pos","random_neg"]})
     def generator_localization(self):
         import csv
         from scipy.stats import t as tdist, ttest_1samp
@@ -237,12 +238,18 @@ class PipelineController:
         summary=[]
         for comp in ("attention","mlp"):
             fold_effect=[];layers=[]
-            for held in range(5):
+            for held in self.requested_folds:
                 z=[r for r in rows if r["component"]==comp and int(r["heldout_fold"])==held];layers.append(int(z[0]["layer"]));pos=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="decision_pos"]);neg=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="decision_neg"]);rp=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="random_pos"]);rn=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="random_neg"]);fold_effect.append((pos-neg)-(rp-rn))
-            mean=float(np.mean(fold_effect));se=float(np.std(fold_effect,ddof=1)/np.sqrt(5));ci=float(tdist.ppf(.975,4)*se);p=float(ttest_1samp(fold_effect,0).pvalue)
-            summary.append({"component":comp,"median_selected_layer":int(np.median(layers)),"mean_control_adjusted_contrast":mean,"ci95_low":mean-ci,"ci95_high":mean+ci,"two_sided_fold_t_p":p,"positive_folds":sum(x>0 for x in fold_effect)})
-        reliable=[r for r in summary if r["positive_folds"]>=4 and r["ci95_low"]>0]; chosen=min(reliable,key=lambda r:(r["median_selected_layer"],0 if r["component"]=="attention" else 1)) if reliable else None
-        write_csv(self.out/"generator_candidates.csv",summary); selection={"status":"complete" if chosen else "audit_failure","official":bool(chosen),"earliest_reliable_component":chosen,"criterion":"actual forward decision contrast minus matched random contrast; 95% fold-t CI > 0 and >=4/5 positive folds; no prior component"};atomic_json(self.out/"generator_selection.json",selection);atomic_json(self.out/"stage_b_selection.json",selection);self.marker("generator_localization",{"official":bool(chosen)})
+            mean=float(np.mean(fold_effect));n=len(fold_effect)
+            if n>1:
+                se=float(np.std(fold_effect,ddof=1)/np.sqrt(n));ci=float(tdist.ppf(.975,n-1)*se);p=float(ttest_1samp(fold_effect,0).pvalue);lo,hi=mean-ci,mean+ci
+            else:
+                p=lo=hi=""
+            summary.append({"component":comp,"median_selected_layer":int(np.median(layers)),"mean_control_adjusted_contrast":mean,"ci95_low":lo,"ci95_high":hi,"two_sided_fold_t_p":p,"positive_folds":sum(x>0 for x in fold_effect),"evaluated_folds":n})
+        full=len(self.requested_folds)==5
+        reliable=[r for r in summary if full and r["positive_folds"]>=4 and float(r["ci95_low"])>0]; chosen=min(reliable,key=lambda r:(r["median_selected_layer"],0 if r["component"]=="attention" else 1)) if reliable else None
+        status="complete" if chosen else ("audit_failure" if full else "exploratory_complete")
+        write_csv(self.out/"generator_candidates.csv",summary); selection={"status":status,"official":bool(chosen),"earliest_reliable_component":chosen,"requested_folds":self.requested_folds,"criterion":"official only with all 5 folds: actual forward decision contrast minus matched random contrast; 95% fold-t CI > 0 and >=4/5 positive folds; no prior component"};atomic_json(self.out/"generator_selection.json",selection);atomic_json(self.out/"stage_b_selection.json",selection);self.marker("generator_localization",{"official":bool(chosen),"folds":self.requested_folds})
     def upstream_source(self):
         selection=json.loads((self.out/"generator_selection.json").read_text())["earliest_reliable_component"]
         if not selection: raise RuntimeError("Generator audit failed; upstream source is non-interpretable")
@@ -272,8 +279,12 @@ class PipelineController:
         with (self.out/"causal_full_depth.csv").open() as f: r=list(csv.DictReader(f)); summary=[]
         for c in self.f["intervention"]["conditions"]:
             for l in range(self.a.num_layers):
-                v=[float(x["delta_margin"]) for x in r if x["condition"]==c and int(x["layer"])==l];fv=[np.mean([float(x["delta_margin"]) for x in r if x["condition"]==c and int(x["layer"])==l and int(x["heldout_fold"])==f]) for f in range(5)];mean=float(np.mean(fv));se=float(np.std(fv,ddof=1)/np.sqrt(5));ci=float(tdist.ppf(.975,4)*se);summary.append({"condition":c,"layer":l,"n":len(v),"mean_delta_margin":mean,"sd_item_delta_margin":float(np.std(v)),"ci95_low":mean-ci,"ci95_high":mean+ci,"two_sided_fold_t_p":float(ttest_1samp(fv,0).pvalue),"fold_means":" ".join(map(str,fv))})
-        write_csv(self.out/"causal_summary.csv",summary);self.marker("aggregate",{"official":json.loads((self.out/"generator_selection.json").read_text())["official"]})
+                v=[float(x["delta_margin"]) for x in r if x["condition"]==c and int(x["layer"])==l];fv=[np.mean([float(x["delta_margin"]) for x in r if x["condition"]==c and int(x["layer"])==l and int(x["heldout_fold"])==f]) for f in self.requested_folds];mean=float(np.mean(fv));nfold=len(fv)
+                if nfold>1:
+                    se=float(np.std(fv,ddof=1)/np.sqrt(nfold));ci=float(tdist.ppf(.975,nfold-1)*se);lo,hi,p=mean-ci,mean+ci,float(ttest_1samp(fv,0).pvalue)
+                else:lo=hi=p=""
+                summary.append({"condition":c,"layer":l,"n":len(v),"mean_delta_margin":mean,"sd_item_delta_margin":float(np.std(v)),"ci95_low":lo,"ci95_high":hi,"two_sided_fold_t_p":p,"fold_means":" ".join(map(str,fv)),"evaluated_folds":nfold})
+        write_csv(self.out/"causal_summary.csv",summary);self.marker("aggregate",{"official":len(self.requested_folds)==5 and json.loads((self.out/"generator_selection.json").read_text())["official"],"folds":self.requested_folds})
     def run(self, stages, resume=False):
         for stage in stages:
             for dep in DEPENDENCIES[stage]:

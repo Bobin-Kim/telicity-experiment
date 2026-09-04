@@ -8,6 +8,7 @@ from pathlib import Path
 
 from ..common.config import load_rq_config, registered_aliases
 from ..common.contracts import RQ2_SUBQUESTIONS
+from ..common.fold_profiles import FOLD_PROFILES
 from ..common.routing import preference_runner_command, run_command
 from .artifacts import reusable_official, select_artifacts
 from .routing import resolve_subquestion
@@ -24,6 +25,8 @@ def main() -> None:
     parser.add_argument("--gpus", default="0")
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--batch-size", type=int)
+    parser.add_argument("--fold-profile", choices=tuple(FOLD_PROFILES), default="confirmatory",
+                        help="pilot=1 fold, standard=3 folds, confirmatory=5 folds (official)")
     parser.add_argument("--plan-only", action="store_true")
     parser.add_argument("--dry-run", action="store_true",
                         help="execute the underlying non-weight tokenizer/config dry run")
@@ -47,7 +50,8 @@ def main() -> None:
         return
     if route["implementation"] == "generic_pipeline":
         command = preference_runner_command(base, args.model, args.gpus, route["generic_stages"],
-                                            args.output_dir, args.dry_run, args.batch_size)
+                                            args.output_dir, args.dry_run, args.batch_size,
+                                            args.fold_profile)
         raise SystemExit(run_command(command, args.plan_only))
 
     result = {"status": "reuse" if official else "planned_or_unavailable",

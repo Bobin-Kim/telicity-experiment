@@ -14,11 +14,42 @@ at the last non-padding prompt position. There is no binary True/Unknown executa
 
 ## Research-question entry points
 
+### Fold budgets: use five folds only for final claims
+
+The shared runners expose three explicit fold profiles:
+
+| Profile | Held-out folds | Intended use | Official result? |
+|---|---:|---|---|
+| `pilot` | 0 (80 held-out items) | debugging, feasibility checks, supplementary diagnostics | no |
+| `standard` | 0–2 (240 held-out items) | candidate screening and replication development | no |
+| `confirmatory` | 0–4 (400 held-out items) | final confidence intervals and causal/model comparisons | yes, subject to audit |
+
+`confirmatory` remains the default so an omitted flag cannot accidentally produce a
+publication claim from partial folds. Expensive intervention stages now honor the
+selected fold budget; fold-independent behavior and activation caches are still
+computed once over the 400-item dataset. Partial runs are written to separate
+`results/<model>-pilot/` or `results/<model>-standard/` directories and are marked
+`official: false`. A one-fold result must never be reported as confirmatory evidence.
+
+```bash
+# Fast handoff/smoke run for another researcher
+scripts/run_rq2.sh qwen2.5-7b rq2.decision_signal_emergence 0 --fold-profile pilot
+
+# Three-fold screening before committing to the final run
+scripts/run_rq2.sh qwen2.5-7b rq2.decision_signal_emergence 0 --fold-profile standard
+
+# Final inference and confidence intervals
+scripts/run_rq2.sh qwen2.5-7b rq2.decision_signal_emergence 0 --fold-profile confirmatory
+```
+
 RQ1 asks where and how Telicity is represented and reconstructed after removal. Its entry point runs only Telicity encoding/cache construction, moving erasure and downstream re-emergence, Attention-versus-MLP recovery, depth-wise aggregation, and source-pathway decomposition. The locked cross-model source paths are `Residual / Context-V / Answer-Q`. `Context-K / Answer-Gate` is an opt-in RQ1 extension; its output is separate and never overwrites or renormalizes the locked three-path result.
 
 ```bash
-# Locked RQ1 protocol
-scripts/run_rq1.sh deepseek-7b-chat 0
+# Locked, final RQ1 protocol
+scripts/run_rq1.sh deepseek-7b-chat 0 --fold-profile confirmatory
+
+# Exploratory RQ1 handoff (one held-out fold; non-official)
+scripts/run_rq1.sh deepseek-7b-chat 0 --fold-profile pilot
 
 # Locked protocol plus the separately reported K/G extension
 scripts/run_rq1.sh deepseek-7b-chat 0 --include-extension

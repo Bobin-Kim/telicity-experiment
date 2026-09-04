@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 if [[ $# -lt 2 ]]; then
-  echo "usage: scripts/run_rq2.sh MODEL_ALIAS RQ2_SUBQUESTION [GPU_IDS] [extra args]" >&2
+  echo "usage: scripts/run_rq2.sh MODEL_ALIAS RQ2_SUBQUESTION [GPU_IDS] [--fold-profile pilot|standard|confirmatory] [extra args]" >&2
   exit 2
 fi
 model=$1

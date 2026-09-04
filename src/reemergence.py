@@ -588,7 +588,10 @@ class ReemergenceWorkflow:
             if len(raw) != expected:
                 raise RuntimeError(f"Incomplete {name} pathway grid: {len(raw)}/{expected}")
             rows, analysis_layers = [], []
-            minimum_folds = int(self.cfg["minimum_verified_folds"])
+            # Partial fold profiles are exploratory by construction.  They may
+            # summarize the folds actually requested, but can never satisfy the
+            # five-fold official contract enforced by the top-level runner.
+            minimum_folds = min(int(self.cfg["minimum_verified_folds"]), len(self.c.requested_folds))
             minimum_drop = float(self.cfg["verified_erasure_min_drop_ba"])
             for layer in self.layers:
                 residual_rows = [r for r in raw if int(r["erasure_layer"]) == layer and r["pathway"] == "residual"]
