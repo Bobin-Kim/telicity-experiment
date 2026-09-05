@@ -18,3 +18,4 @@ smoke/
 *.pt
 *.pth
 *.ckpt
+.DS_Store
