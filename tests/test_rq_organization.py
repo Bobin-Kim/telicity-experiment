@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.common.config import load_rq_config, registered_aliases
 from src.common.contracts import CANONICAL_FORMULA, RQ2_SUBQUESTIONS
+from src.common.fold_profiles import FOLD_PROFILES, folds_for_profile, is_confirmatory
 from src.rq1.routing import rq1_stages
 from src.rq2.routing import resolve_subquestion
 
@@ -28,6 +29,14 @@ class ResearchQuestionOrganization(unittest.TestCase):
         self.assertIn("qwen2.5-7b", aliases)
         self.assertEqual(self.rq1["scoring_contract"]["formula"], CANONICAL_FORMULA)
         self.assertEqual(self.rq2["scoring_contract"]["formula"], CANONICAL_FORMULA)
+
+    def test_fold_profiles_are_explicit_and_only_five_fold_is_confirmatory(self):
+        self.assertEqual(folds_for_profile("pilot"), [0])
+        self.assertEqual(folds_for_profile("standard"), [0, 1, 2])
+        self.assertEqual(folds_for_profile("confirmatory"), [0, 1, 2, 3, 4])
+        self.assertTrue(is_confirmatory(folds_for_profile("confirmatory")))
+        self.assertFalse(is_confirmatory(folds_for_profile("pilot")))
+        self.assertEqual(set(FOLD_PROFILES), {"pilot", "standard", "confirmatory"})
 
     def test_rq1_route_is_isolated(self):
         locked = rq1_stages(False)

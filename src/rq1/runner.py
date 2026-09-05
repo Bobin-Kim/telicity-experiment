@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 
 from ..common.config import load_rq_config, registered_aliases
+from ..common.fold_profiles import FOLD_PROFILES
 from ..common.routing import preference_runner_command, run_command
 from .routing import rq1_stages
 
@@ -22,6 +23,8 @@ def main() -> None:
                         help="also run Context-K/Answer-Gate without changing the locked three-path result")
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--batch-size", type=int)
+    parser.add_argument("--fold-profile", choices=tuple(FOLD_PROFILES), default="confirmatory",
+                        help="pilot=1 fold, standard=3 folds, confirmatory=5 folds (official)")
     parser.add_argument("--plan-only", action="store_true",
                         help="print the resolved command without tokenizer/model access")
     parser.add_argument("--dry-run", action="store_true",
@@ -33,7 +36,7 @@ def main() -> None:
         parser.error(f"unknown model alias {args.model!r}; choose from {', '.join(aliases)}")
     stages = rq1_stages(args.include_extension)
     command = preference_runner_command(base, args.model, args.gpus, stages, args.output_dir,
-                                        args.dry_run, args.batch_size)
+                                        args.dry_run, args.batch_size, args.fold_profile)
     raise SystemExit(run_command(command, args.plan_only))
 
 
