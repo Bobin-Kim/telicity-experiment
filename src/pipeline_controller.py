@@ -127,6 +127,7 @@ class PipelineController:
             for q in basis:v-=q*np.dot(q,v)
             if np.linalg.norm(v)<1e-10:break
             v=norm(v);basis.append(v);work-=np.outer(work@v,v)
+        if not basis: return center, np.zeros((0, x.shape[-1])), np.zeros(x.shape[-1]), 1.0
         b=np.stack(basis); axis=norm(b.T@np.linalg.lstsq((x[tr]-center)@b.T,y[tr]-y[tr].mean(),rcond=1e-8)[0]); return center,b,axis,float(np.std((x[tr]-center)@axis) or 1)
     def causal_intervention(self):
         if self.profile=="mistral_original_rq2_e345":return self._mistral_causal_intervention()
@@ -134,7 +135,12 @@ class PipelineController:
         for held in self.requested_folds:
             tr=self.fold!=held; test=np.flatnonzero(~tr).tolist()
             for layer in range(self.a.num_layers):
-                center,basis,axis,sd=self._axis(x[:,layer],y,tr); rng=np.random.default_rng(seed+held*1000+layer); raw=rng.normal(size=(x.shape[-1],len(basis)));raw-=basis.T@(basis@raw);rbase=np.linalg.qr(raw)[0].T;rv=rbase[0];decision_dist=np.linalg.norm(((x[tr,layer]-center)@basis.T)@basis,axis=1).mean();random_dist=np.linalg.norm(((x[tr,layer]-center)@rbase.T)@rbase,axis=1).mean();rscale=float(decision_dist/max(random_dist,1e-12))
+                center,basis,axis,sd=self._axis(x[:,layer],y,tr)
+                if basis.shape[0]==0:
+                    for cond in self.f["intervention"]["conditions"]:
+                        for i in test: rows.append({"example_index":i,"example_id":self.rows[i]["id"],"group":self.rows[i]["group"][0],"heldout_fold":held,"layer":layer,"condition":cond,"baseline_margin":float(y[i]),"margin":float(y[i]),"delta_margin":0.0})
+                    continue
+                rng=np.random.default_rng(seed+held*1000+layer); raw=rng.normal(size=(x.shape[-1],len(basis)));raw-=basis.T@(basis@raw);rbase=np.linalg.qr(raw)[0].T;rv=rbase[0];decision_dist=np.linalg.norm(((x[tr,layer]-center)@basis.T)@basis,axis=1).mean();random_dist=np.linalg.norm(((x[tr,layer]-center)@rbase.T)@rbase,axis=1).mean();rscale=float(decision_dist/max(random_dist,1e-12))
                 for cond in self.f["intervention"]["conditions"]:
                     batch=self.stage_batch("intervention")
                     for st in range(0,len(test),batch):
