@@ -2,10 +2,18 @@ from __future__ import annotations
 import csv, json, math, os
 from pathlib import Path
 
+def _json_default(o):
+    import numpy as np
+    if isinstance(o, np.integer): return int(o)
+    if isinstance(o, np.floating): return float(o)
+    if isinstance(o, np.bool_): return bool(o)
+    if isinstance(o, np.ndarray): return o.tolist()
+    raise TypeError(f"Object of type {o.__class__.__name__} is not JSON serializable")
+
 def atomic_json(path: Path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + f".{os.getpid()}.tmp")
-    tmp.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    tmp.write_text(json.dumps(value, indent=2, sort_keys=True, default=_json_default) + "\n")
     tmp.replace(path)
 
 def write_csv(path: Path, rows):
