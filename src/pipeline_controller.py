@@ -127,6 +127,7 @@ class PipelineController:
             for q in basis:v-=q*np.dot(q,v)
             if np.linalg.norm(v)<1e-10:break
             v=norm(v);basis.append(v);work-=np.outer(work@v,v)
+        if not basis: return center, np.zeros((0, x.shape[-1])), np.zeros(x.shape[-1]), 1.0
         b=np.stack(basis); axis=norm(b.T@np.linalg.lstsq((x[tr]-center)@b.T,y[tr]-y[tr].mean(),rcond=1e-8)[0]); return center,b,axis,float(np.std((x[tr]-center)@axis) or 1)
     def causal_intervention(self):
         if self.profile=="mistral_original_rq2_e345":return self._mistral_causal_intervention()
@@ -134,7 +135,12 @@ class PipelineController:
         for held in self.requested_folds:
             tr=self.fold!=held; test=np.flatnonzero(~tr).tolist()
             for layer in range(self.a.num_layers):
-                center,basis,axis,sd=self._axis(x[:,layer],y,tr); rng=np.random.default_rng(seed+held*1000+layer); raw=rng.normal(size=(x.shape[-1],len(basis)));raw-=basis.T@(basis@raw);rbase=np.linalg.qr(raw)[0].T;rv=rbase[0];decision_dist=np.linalg.norm(((x[tr,layer]-center)@basis.T)@basis,axis=1).mean();random_dist=np.linalg.norm(((x[tr,layer]-center)@rbase.T)@rbase,axis=1).mean();rscale=float(decision_dist/max(random_dist,1e-12))
+                center,basis,axis,sd=self._axis(x[:,layer],y,tr)
+                if basis.shape[0]==0:
+                    for cond in self.f["intervention"]["conditions"]:
+                        for i in test: rows.append({"example_index":i,"example_id":self.rows[i]["id"],"group":self.rows[i]["group"][0],"heldout_fold":held,"layer":layer,"condition":cond,"baseline_margin":float(y[i]),"margin":float(y[i]),"delta_margin":0.0})
+                    continue
+                rng=np.random.default_rng(seed+held*1000+layer); raw=rng.normal(size=(x.shape[-1],len(basis)));raw-=basis.T@(basis@raw);rbase=np.linalg.qr(raw)[0].T;rv=rbase[0];decision_dist=np.linalg.norm(((x[tr,layer]-center)@basis.T)@basis,axis=1).mean();random_dist=np.linalg.norm(((x[tr,layer]-center)@rbase.T)@rbase,axis=1).mean();rscale=float(decision_dist/max(random_dist,1e-12))
                 for cond in self.f["intervention"]["conditions"]:
                     batch=self.stage_batch("intervention")
                     for st in range(0,len(test),batch):
@@ -241,8 +247,9 @@ class PipelineController:
             for held in self.requested_folds:
                 z=[r for r in rows if r["component"]==comp and int(r["heldout_fold"])==held];layers.append(int(z[0]["layer"]));pos=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="decision_pos"]);neg=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="decision_neg"]);rp=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="random_pos"]);rn=np.mean([float(r["delta_margin"]) for r in z if r["condition"]=="random_neg"]);fold_effect.append((pos-neg)-(rp-rn))
             mean=float(np.mean(fold_effect));n=len(fold_effect)
-            if n>1:
-                se=float(np.std(fold_effect,ddof=1)/np.sqrt(n));ci=float(tdist.ppf(.975,n-1)*se);p=float(ttest_1samp(fold_effect,0).pvalue);lo,hi=mean-ci,mean+ci
+            se=float(np.std(fold_effect,ddof=1)/np.sqrt(n)) if n>1 else 0.0
+            if n>1 and se>0:
+                ci=float(tdist.ppf(.975,n-1)*se);p=float(ttest_1samp(fold_effect,0).pvalue);lo,hi=mean-ci,mean+ci
             else:
                 p=lo=hi=""
             summary.append({"component":comp,"median_selected_layer":int(np.median(layers)),"mean_control_adjusted_contrast":mean,"ci95_low":lo,"ci95_high":hi,"two_sided_fold_t_p":p,"positive_folds":sum(x>0 for x in fold_effect),"evaluated_folds":n})
@@ -280,8 +287,9 @@ class PipelineController:
         for c in self.f["intervention"]["conditions"]:
             for l in range(self.a.num_layers):
                 v=[float(x["delta_margin"]) for x in r if x["condition"]==c and int(x["layer"])==l];fv=[np.mean([float(x["delta_margin"]) for x in r if x["condition"]==c and int(x["layer"])==l and int(x["heldout_fold"])==f]) for f in self.requested_folds];mean=float(np.mean(fv));nfold=len(fv)
-                if nfold>1:
-                    se=float(np.std(fv,ddof=1)/np.sqrt(nfold));ci=float(tdist.ppf(.975,nfold-1)*se);lo,hi,p=mean-ci,mean+ci,float(ttest_1samp(fv,0).pvalue)
+                se=float(np.std(fv,ddof=1)/np.sqrt(nfold)) if nfold>1 else 0.0
+                if nfold>1 and se>0:
+                    ci=float(tdist.ppf(.975,nfold-1)*se);lo,hi,p=mean-ci,mean+ci,float(ttest_1samp(fv,0).pvalue)
                 else:lo=hi=p=""
                 summary.append({"condition":c,"layer":l,"n":len(v),"mean_delta_margin":mean,"sd_item_delta_margin":float(np.std(v)),"ci95_low":lo,"ci95_high":hi,"two_sided_fold_t_p":p,"fold_means":" ".join(map(str,fv)),"evaluated_folds":nfold})
         write_csv(self.out/"causal_summary.csv",summary);self.marker("aggregate",{"official":len(self.requested_folds)==5 and json.loads((self.out/"generator_selection.json").read_text())["official"],"folds":self.requested_folds})
