@@ -1,0 +1,6 @@
+model,fold,self_restoration_max_abs_margin_error,baseline_vs_cached_max_abs_margin_error,max_relative_injected_norm_error
+mistral,0,0.0,0.0,7.395157306963448e-05
+mistral,1,0.0,0.0,0.00016440798834404974
+mistral,2,0.0,0.0,8.958614493280628e-05
+mistral,3,0.0,0.0,0.00010828394796841163
+mistral,4,0.0,0.0,5.494789612277459e-05

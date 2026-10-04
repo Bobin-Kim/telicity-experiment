@@ -1,0 +1,142 @@
+{
+  "status": "complete",
+  "model": "llama31_8b",
+  "model_display": "Meta-Llama-3.1-8B-Instruct",
+  "model_path": "/home/bobin/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659",
+  "model_type": "llama",
+  "depth": 32,
+  "hidden": 4096,
+  "dataset": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "prompt_sha256": "2bb49f282f0ed564ff77531c7e27ecd237333f20a8b3f0fb36d20db2d4b173d7",
+  "label_names": [
+    "True",
+    "False",
+    "Unknown"
+  ],
+  "label_first_token_ids": [
+    2575,
+    4139,
+    14109
+  ],
+  "margin": "z_True-z_Unknown",
+  "folds": 5,
+  "fold_policy": "canonical seed-42 verb-disjoint folds",
+  "conditions": [
+    "baseline",
+    "telicity_plus",
+    "telicity_minus",
+    "decision_plus",
+    "decision_minus",
+    "random_plus",
+    "random_minus",
+    "self_restore"
+  ],
+  "expected_intervention_rows": 1600,
+  "candidate_layers": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "ridge_grid": [
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "primary_unit": "held-out verb fold",
+  "dose": "outer-training projection SD at selected layer",
+  "hook": "selected block-output residual at last non-padding answer position",
+  "offline": true,
+  "cpu_prepare_python": "/data/sl_datasets/wlasl/Qwen2.5-1.5B-Instruct/venv/bin/python",
+  "source": {
+    "source_audit": "/home/bobin/imperfective_paradox_repro/results/rq1_c1_c3_replication/llama31_8b/audit.json",
+    "reps": "/home/bobin/imperfective_paradox_repro/results/rq1_c1_c3_replication/llama31_8b/baseline_answer_activations.npy",
+    "logits": "/home/bobin/imperfective_paradox_repro/results/rq1_c1_c3_replication/llama31_8b/baseline_label_logits.npy",
+    "reps_sha256": "18b1da0ac5b66fee2974dd480a3ca3cda382becaaebff4a924a1786449cd8c53",
+    "logits_sha256": "f11fac49ff597949cd618298d86da7c0db887c02974846f472220453ba7d9e28",
+    "prompt": {
+      "status": "PASS",
+      "model": "llama31_8b",
+      "model_type": "llama",
+      "architectures": [
+        "LlamaForCausalLM"
+      ],
+      "dataset": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+      "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+      "n": 200,
+      "fold_counts": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40
+      },
+      "fold_policy": "five verb-disjoint folds, seed 42",
+      "prompt_builder": "run_reproduction.build_prompt",
+      "add_special_tokens": false,
+      "padding_side": "right",
+      "answer_definition": "last non-padding prompt token",
+      "prompt_sha256": "2bb49f282f0ed564ff77531c7e27ecd237333f20a8b3f0fb36d20db2d4b173d7",
+      "min_prompt_tokens": 171,
+      "max_prompt_tokens": 183,
+      "answer_indices_verified": 200,
+      "labels": [
+        "True",
+        "False",
+        "Unknown"
+      ],
+      "label_first_token_ids": [
+        2575,
+        4139,
+        14109
+      ],
+      "selected_layers": [
+        {
+          "role": "early",
+          "normalized_depth": 0.25,
+          "human_layer": 8,
+          "zero_based_code_index": 7,
+          "next_block_code_index": 8
+        },
+        {
+          "role": "middle",
+          "normalized_depth": 0.5,
+          "human_layer": 16,
+          "zero_based_code_index": 15,
+          "next_block_code_index": 16
+        },
+        {
+          "role": "late",
+          "normalized_depth": 0.75,
+          "human_layer": 24,
+          "zero_based_code_index": 23,
+          "next_block_code_index": 24
+        }
+      ]
+    }
+  },
+  "gpu_policy": {
+    "physical_gpu": 1,
+    "process_device": "cuda:0",
+    "forbidden": [
+      0,
+      3
+    ]
+  },
+  "batch_size": 4,
+  "audit": "PASS"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "expected_per_example_rows": 9000,
+  "completed_per_example_rows": 9000,
+  "models": 5,
+  "folds_per_model": 5,
+  "doses": [
+    0.5,
+    1.0,
+    2.0,
+    3.0
+  ],
+  "AB_actual_forward": true,
+  "CD_reference_reused_from_final_pass_actual_forward": true,
+  "new_model_forward_for_decoding_cache": true,
+  "offline": true,
+  "heldout_used_for_fit_sign_scale_or_selection": false,
+  "primary_site_source": "existing RQ2 fold-specific telicity intervention assets"
+}

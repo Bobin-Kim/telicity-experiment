@@ -1,0 +1,80 @@
+{
+  "status": "prepared",
+  "model": "mistral",
+  "model_display": "Mistral-7B-Instruct-v0.3",
+  "model_path": "/data/sl_datasets/models/mistralai/Mistral-7B-Instruct-v0.3",
+  "inference_dtype": "bfloat16",
+  "terminal_readout_precision": "float32 for Mistral post-final-RMSNorm coordinate so the preregistered sub-BF16 1-SD dose is exactly representable; otherwise model dtype",
+  "depth": 32,
+  "hidden": 4096,
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "prompt_sha256": "25d46327121c80496ebb08f9c643c58a37894c204f3377aabbc597c258031522",
+  "label_names": [
+    "True",
+    "False",
+    "Unknown"
+  ],
+  "label_first_token_ids": [
+    6878,
+    9018,
+    1703
+  ],
+  "margin": "z_True-z_Unknown",
+  "folds": 5,
+  "fold_policy": "canonical seed-42 verb-disjoint folds",
+  "conditions": [
+    "baseline",
+    "telicity_plus",
+    "telicity_minus",
+    "decision_plus",
+    "decision_minus",
+    "random_plus",
+    "random_minus",
+    "self_restore"
+  ],
+  "expected_intervention_rows": 1600,
+  "candidate_layers": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "ridge_grid": [
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "primary_unit": "held-out verb fold",
+  "dose": "outer-training projection SD at selected layer",
+  "hook": "cached hidden-state coordinate; for Mistral human L32 this is model.model.norm output, otherwise selected block output; last non-padding answer position",
+  "offline": true,
+  "source_hashes": {
+    "/home/bobin/imperfective_paradox_repro/results/mistral7b_rq2_reproducible/interaction/full_answer_layers.npz": "d7e4798d4654896fe92ae96eface5114278d11bbdd7f602bcaf2d8792f27f370",
+    "/home/bobin/imperfective_paradox_repro/results/mistral7b_matched_magnitude_gain_A33/audit.json": "3a81b7cc44541dcc9bc97e6ded23308cb87d54407f8f729cffad6a8cf90ef28d",
+    "/home/bobin/imperfective_paradox_repro/results/mistral7b_matched_magnitude_gain_A33/intervention_assets.npz": "b95279ca1e582302ac9b79eecc0439d36ed58bdb326cd8b15ab2123ad7999e71",
+    "/home/bobin/imperfective_paradox_repro/mistral_rq2_decision/rq2a_margin_signal/final_true_unknown_margin.npy": "97135fd57ad0d41448fc84e571528cc277c4606f801b5ff9b22b4d46f1c1a6bf",
+    "/home/bobin/imperfective_paradox_repro/results/Mistral_RQ1_experiment_5/audit_manifest.json": "b5af90e83658721fbfbf13c541d7f46489957f7a452cb1f991e9838385ca15e2"
+  },
+  "gpu_policy": {
+    "physical_gpu": 1,
+    "process_device": "cuda:0",
+    "forbidden": [
+      2,
+      3
+    ]
+  },
+  "batch_size": 8
+}

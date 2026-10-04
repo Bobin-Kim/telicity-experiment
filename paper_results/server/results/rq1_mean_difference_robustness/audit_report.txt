@@ -1,0 +1,23 @@
+{
+  "status": "PASS_WITH_PRIMARY_PROVENANCE_LIMITATION",
+  "expected_jobs": 75,
+  "completed_valid_jobs": 75,
+  "missing_or_invalid_jobs": 0,
+  "five_models": true,
+  "five_folds_each": true,
+  "three_depths_each": true,
+  "all_train_n_160_test_n_40": true,
+  "no_verb_overlap": true,
+  "train_only_direction": true,
+  "no_heldout_hyperparameter_selection": true,
+  "unit_directions": true,
+  "baseline_ba_matches_primary_max_abs_error": 2.220446049250313e-16,
+  "baseline_ba_matches_primary": true,
+  "post_erasure_projection_max_abs": 0.038211822509765625,
+  "post_erasure_projection_numerically_small": true,
+  "finite_metrics": true,
+  "same_answer_position": "last non-padding prompt token",
+  "same_erasure_equation": "h - (v^T h) v",
+  "same_recovery_definition": "(after_mlp_ba-after_erasure_ba)/(before_erasure_ba-after_erasure_ba)",
+  "primary_provenance_limitation": "Saved harmonized primary stages trace to calibrated INLP/subspace erasure for at least Qwen/DeepSeek/Llama/Gemma; they are not a uniform 1D probe-direction intervention."
+}

@@ -1,0 +1,2 @@
+model,magnitude_definition,magnitude_ratio_decision_over_telicity,causal_definition,decision_max_abs_one_sided_delta_CD,telicity_max_abs_one_sided_delta_CD,causal_ratio_decision_over_telicity,cosine_definition,mean_signed_cosine,same_site,table_compatible
+Mistral,held-out Group-C mean absolute standardized projection ratio,0.9075208776751479,max absolute pooled C/D one-sided delta-margin ratio at ±1 own projection SD,2.6015625,0.05671875,45.867768595041326,mean fold signed cosine of same-site unit axes,-0.001486428561712634,True,True

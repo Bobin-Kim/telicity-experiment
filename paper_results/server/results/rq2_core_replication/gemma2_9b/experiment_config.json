@@ -1,0 +1,147 @@
+{
+  "status": "complete",
+  "model": "gemma2_9b",
+  "model_display": "google/gemma-2-9b-it",
+  "model_path": "/home/bobin/.cache/huggingface/hub/models--google--gemma-2-9b-it/snapshots/11c9b309abf73637e4b6f9a3fa1e92e615547819",
+  "model_type": "gemma2",
+  "depth": 42,
+  "hidden": 3584,
+  "dataset": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "prompt_sha256": "92a867336054bb9c84a12a94a29496261784e2fd96167957f4802d9798a97d0e",
+  "label_names": [
+    "True",
+    "False",
+    "Unknown"
+  ],
+  "label_first_token_ids": [
+    5036,
+    8393,
+    17600
+  ],
+  "margin": "z_True-z_Unknown",
+  "folds": 5,
+  "fold_policy": "canonical seed-42 verb-disjoint folds",
+  "conditions": [
+    "baseline",
+    "telicity_plus",
+    "telicity_minus",
+    "decision_plus",
+    "decision_minus",
+    "random_plus",
+    "random_minus",
+    "self_restore"
+  ],
+  "expected_intervention_rows": 1600,
+  "candidate_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42
+  ],
+  "ridge_grid": [
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "primary_unit": "held-out verb fold",
+  "dose": "outer-training projection SD at selected layer",
+  "hook": "selected block-output residual at last non-padding answer position",
+  "offline": true,
+  "cpu_prepare_python": "/data/sl_datasets/wlasl/Qwen2.5-1.5B-Instruct/venv/bin/python",
+  "source": {
+    "source_audit": "/home/bobin/imperfective_paradox_repro/results/rq1_c1_c3_replication/gemma2_9b/audit.json",
+    "reps": "/home/bobin/imperfective_paradox_repro/results/rq1_c1_c3_replication/gemma2_9b/baseline_answer_activations.npy",
+    "logits": "/home/bobin/imperfective_paradox_repro/results/rq1_c1_c3_replication/gemma2_9b/baseline_label_logits.npy",
+    "reps_sha256": "a6087a5139e621d75f77212c3264e76005f97ba34f850d3df58ee43a5ff50e00",
+    "logits_sha256": "471a2206214bffdf5f9a80fcaf8d3d2b7d59d828f864f784b598a8526e9f4bd5",
+    "prompt": {
+      "status": "PASS",
+      "model": "gemma2_9b",
+      "model_type": "gemma2",
+      "architectures": [
+        "Gemma2ForCausalLM"
+      ],
+      "dataset": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+      "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+      "n": 200,
+      "fold_counts": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40
+      },
+      "fold_policy": "five verb-disjoint folds, seed 42",
+      "prompt_builder": "run_reproduction.build_prompt",
+      "add_special_tokens": false,
+      "padding_side": "right",
+      "answer_definition": "last non-padding prompt token",
+      "prompt_sha256": "92a867336054bb9c84a12a94a29496261784e2fd96167957f4802d9798a97d0e",
+      "min_prompt_tokens": 131,
+      "max_prompt_tokens": 141,
+      "answer_indices_verified": 200,
+      "labels": [
+        "True",
+        "False",
+        "Unknown"
+      ],
+      "label_first_token_ids": [
+        5036,
+        8393,
+        17600
+      ],
+      "selected_layers": [
+        {
+          "role": "early",
+          "normalized_depth": 0.25,
+          "human_layer": 11,
+          "zero_based_code_index": 10,
+          "next_block_code_index": 11
+        },
+        {
+          "role": "middle",
+          "normalized_depth": 0.5,
+          "human_layer": 21,
+          "zero_based_code_index": 20,
+          "next_block_code_index": 21
+        },
+        {
+          "role": "late",
+          "normalized_depth": 0.75,
+          "human_layer": 32,
+          "zero_based_code_index": 31,
+          "next_block_code_index": 32
+        }
+      ]
+    }
+  },
+  "gpu_policy": {
+    "physical_gpu": 2,
+    "process_device": "cuda:0",
+    "forbidden": [
+      0,
+      3
+    ]
+  },
+  "batch_size": 2,
+  "audit": "PASS"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/home/bobin/imperfective_paradox_repro/assets/imperfectiveNLI.json",
+    "sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a"
+  },
+  {
+    "path": "/home/bobin/imperfective_paradox_repro/results/rq3_matched_budget_35/model_summary.csv",
+    "sha256": "0c2930a94617e9746e975f4742cb6dfb8d456ece84e6d99d49ab60a240f2c716"
+  },
+  {
+    "path": "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_experiment6_adaptive_ta_l20_l27_A27/per_example.csv",
+    "sha256": "ee4bdf739ff659c25f6a42039a433b6d6a255cd92576b3756556f99c827c0b61"
+  },
+  {
+    "path": "/home/bobin/imperfective_paradox_repro/results/rq3_llama_gemma_confirmatory/llama/per_example.csv",
+    "sha256": "21a90f7985f5814f11d8b865a6e34768a0c9be52a1ba32445913331f74439156"
+  },
+  {
+    "path": "/home/bobin/imperfective_paradox_repro/results/rq3_gemma_d5_budget/per_example.csv",
+    "sha256": "0557aaee2c43b113cc85cfd775e8ce7defaef3e0e30e9824b3ea471e491b0c79"
+  },
+  {
+    "path": "/home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/results/deepseek-7b-rq2/rq2_4_d_safe_exploratory/per_example.csv",
+    "sha256": "82cf2ec3c4f0a23645f944de4cb005890b915a5f5e699ad9334f5e64fb566f1d"
+  }
+]

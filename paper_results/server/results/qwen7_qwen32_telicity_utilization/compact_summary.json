@@ -1,0 +1,138 @@
+{
+  "models": {
+    "Qwen-7B": {
+      "model": "Qwen-7B",
+      "group_C_accuracy": 0.41,
+      "selected_telicity_layers": [
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "telicity_BA": {
+        "mean": 0.811265664160401,
+        "ci95_low": 0.7328560753583504,
+        "ci95_high": 0.8896752529624516,
+        "fold_values": "0.832142857143;0.770238095238;0.725;0.845394736842;0.883552631579"
+      },
+      "coupling_CD_mean_fold_r": {
+        "mean": -0.866093039419742,
+        "ci95_low": -0.9326297728674706,
+        "ci95_high": -0.7995563059720134,
+        "fold_values": "-0.894618866457;-0.83898209031;-0.79388038281;-0.934783072963;-0.868200784559"
+      },
+      "coupling_CD_pooled_oof_r2": 0.7519488226772041,
+      "coupling_C_mean_fold_r": {
+        "mean": -0.8952674165745449,
+        "ci95_low": -0.9365924481686542,
+        "ci95_high": -0.8539423849804356,
+        "fold_values": "-0.910031600517;-0.889800296546;-0.905172843577;-0.929827262069;-0.841505080163"
+      },
+      "coupling_C_pooled_oof_r2": 0.7959985623819303,
+      "C_correct": {
+        "n": 41,
+        "mean_telicity_z": 0.9232690095827824,
+        "detection_rate": 0.975609756097561
+      },
+      "C_incorrect": {
+        "n": 59,
+        "mean_telicity_z": -0.15870956531849134,
+        "detection_rate": 0.2542372881355932
+      }
+    },
+    "Qwen-32B": {
+      "model": "Qwen-32B",
+      "group_C_accuracy": 0.87,
+      "selected_telicity_layers": [
+        45,
+        47,
+        64,
+        46,
+        46
+      ],
+      "telicity_BA": {
+        "mean": 0.8774999999999998,
+        "ci95_low": 0.8150299851330494,
+        "ci95_high": 0.9399700148669503,
+        "fold_values": "0.9375;0.925;0.85;0.825;0.85"
+      },
+      "coupling_CD_mean_fold_r": {
+        "mean": -0.9908471757985357,
+        "ci95_low": -0.996118244517529,
+        "ci95_high": -0.9855761070795424,
+        "fold_values": "-0.993049819724;-0.995752289071;-0.989142910287;-0.99172806513;-0.98456279478"
+      },
+      "coupling_CD_pooled_oof_r2": 0.9819277633368528,
+      "coupling_C_mean_fold_r": {
+        "mean": -0.9727915763026653,
+        "ci95_low": -0.989097419143326,
+        "ci95_high": -0.9564857334620046,
+        "fold_values": "-0.969885617103;-0.983871426216;-0.968513848465;-0.987164146765;-0.954522842963"
+      },
+      "coupling_C_pooled_oof_r2": 0.9158710012386592,
+      "C_correct": {
+        "n": 87,
+        "mean_telicity_z": 0.9899977974506903,
+        "detection_rate": 0.9770114942528736
+      },
+      "C_incorrect": {
+        "n": 13,
+        "mean_telicity_z": -0.39553138075209565,
+        "detection_rate": 0.23076923076923078
+      }
+    }
+  },
+  "verdict": {
+    "question_1_represented_in_both": true,
+    "question_2_qwen7_retains_telicity_in_wrong_C": false,
+    "question_3_stronger_representation_decision_relationship_in_32B": true,
+    "absolute_CD_correlation_difference_32B_minus_7B": {
+      "mean": 0.1247541363787936,
+      "ci95_low": 0.05858998950095502,
+      "ci95_high": 0.19091828325663218,
+      "fold_values": "0.0984309532672;0.156770198761;0.195262527477;0.0569449921668;0.116362010221"
+    },
+    "all_three_supported": false,
+    "wording_if_supported": "These results are consistent with scaling improving the utilization of an already available telicity representation, rather than the behavioral improvement arising solely from the acquisition of a new representation.",
+    "causal_limit": "Cross-model association does not establish that scaling causally improves utilization."
+  },
+  "comparison": [
+    {
+      "metric": "Group C accuracy",
+      "Qwen-7B": 0.41,
+      "Qwen-32B": 0.87,
+      "interpretation": "behavioral performance"
+    },
+    {
+      "metric": "Telicity representation (mean held-out BA)",
+      "Qwen-7B": 0.811265664160401,
+      "Qwen-32B": 0.8774999999999998,
+      "interpretation": "fold-held-out information availability"
+    },
+    {
+      "metric": "Representation in incorrect C (mean z / detection rate)",
+      "Qwen-7B": "-0.15871 / 25.424%",
+      "Qwen-32B": "-0.395531 / 23.077%",
+      "interpretation": "one-class held-out score; not a within-C decoding BA"
+    },
+    {
+      "metric": "Telicity→margin coupling C/D (mean fold Pearson r)",
+      "Qwen-7B": -0.866093039419742,
+      "Qwen-32B": -0.9908471757985357,
+      "interpretation": "within-model standardized held-out projection"
+    },
+    {
+      "metric": "Telicity→margin coupling Group C (mean fold Pearson r)",
+      "Qwen-7B": -0.8952674165745449,
+      "Qwen-32B": -0.9727915763026653,
+      "interpretation": "association within the telic target group"
+    },
+    {
+      "metric": "Causal decision evidence",
+      "Qwen-7B": "±1-SD gain C=2.7141",
+      "Qwen-32B": "L64 OOF R2=0.999673; -1SD C Δm=-1.38797",
+      "interpretation": "downstream decision direction; not the Telicity axis"
+    }
+  ]
+}

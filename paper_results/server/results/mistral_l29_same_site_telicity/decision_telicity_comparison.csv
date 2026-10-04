@@ -1,0 +1,3 @@
+group,decision_gain_L29,telicity_gain_L29,decision_minus_telicity_gain,difference_ci95_low,difference_ci95_high,signed_ratio,absolute_gain_ratio,absolute_ratio_ci95_low,absolute_ratio_ci95_high,ratio_status,same_site,same_margin,same_own_projection_sd_dose
+C,2.1025,-0.05875,2.16125,2.0739023437500004,2.25859375,-35.787234042553195,35.787234042553195,32.75696028044795,39.34014825581395,FINITE,True,True,True
+D,1.95546875,-0.04796875,2.0034375,1.9645312499999998,2.0440625,-40.76547231270359,40.76547231270359,36.66267302019514,46.01458831024049,FINITE,True,True,True

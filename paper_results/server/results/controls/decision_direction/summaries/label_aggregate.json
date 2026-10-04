@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "control": "label",
+  "raw_rows": 12000,
+  "paired_examples": 4000,
+  "summary_rows": 40,
+  "fold_summary_rows": 200,
+  "bootstrap_samples": 10000,
+  "seed": 42,
+  "bootstrap": "within-fold paired example resampling, then equal mean of five fold means"
+}

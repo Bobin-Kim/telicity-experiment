@@ -1,0 +1,26 @@
+model,fold,candidate_id,selection_valid,selection_scope,validation_ACC_A,validation_ACC_B,validation_ACC_C,validation_ACC_D,detector_layer,threshold_quantile,inner_oof_threshold,strength,overall,A,B,C,D,baseline,outer_train_threshold,heldout_used_for_selection,telicity_threshold,ambiguity_threshold,dose_sd,inner_C_accuracy,inner_overall_accuracy,heldout_gate_A,heldout_gate_B,heldout_gate_C,heldout_gate_D,layer,threshold,val_recall_C,val_fpr_nonC,val_tp,val_fp,val_auroc,D3_validation_harms_A,D3_validation_harms_B,D3_validation_harms_D,selection_used_outer_test,detector,actuator_zero_based_layer,actuator_human_layer,validation_delta_ACC_C,D_harm_budget
+Qwen,0,l20_l27,1,other four outer folds only,0.225,0.9875,0.5125,0.9375,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Qwen,1,l20_l27,1,other four outer folds only,0.1875,0.975,0.5375,0.925,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Qwen,2,l20_l27,1,other four outer folds only,0.175,0.9875,0.5375,0.95,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Qwen,3,l20_l27,1,other four outer folds only,0.2,0.975,0.575,0.95,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Qwen,4,l20_l27,1,other four outer folds only,0.2125,0.975,0.5875,0.9375,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mistral,0,f0_c6,True,four canonical outer-training folds only,,,,,31,0.85,0.9998216863058008,60.0,0.725,0.4125,0.95,0.55,0.9875,"{'A': 0.4125, 'B': 0.95, 'C': 0.0125, 'D': 1.0}",0.9999373467428618,False,,,,,,,,,,,,,,,,,,,,,,,,,
+Mistral,1,f1_c6,True,four canonical outer-training folds only,,,,,31,0.85,0.9997308269632128,60.0,0.715625,0.4,0.9375,0.5375,0.9875,"{'A': 0.4, 'B': 0.9375, 'C': 0.0, 'D': 1.0}",0.9998651110441814,False,,,,,,,,,,,,,,,,,,,,,,,,,
+Mistral,2,f2_c6,True,four canonical outer-training folds only,,,,,31,0.85,0.9995319376128011,60.0,0.725,0.4125,0.95,0.55,0.9875,"{'A': 0.4125, 'B': 0.95, 'C': 0.0125, 'D': 1.0}",0.9997333078238138,False,,,,,,,,,,,,,,,,,,,,,,,,,
+Mistral,3,f3_c6,True,four canonical outer-training folds only,,,,,31,0.85,0.9997402051829181,60.0,0.71875,0.4125,0.9375,0.5375,0.9875,"{'A': 0.4125, 'B': 0.9375, 'C': 0.0125, 'D': 1.0}",0.9998946264160633,False,,,,,,,,,,,,,,,,,,,,,,,,,
+Mistral,4,f4_c6,True,four canonical outer-training folds only,,,,,31,0.85,0.9997972120166755,60.0,0.725,0.4625,0.925,0.5125,1.0,"{'A': 0.4625, 'B': 0.925, 'C': 0.0125, 'D': 1.0}",0.9999271670954228,False,,,,,,,,,,,,,,,,,,,,,,,,,
+DeepSeek,0,dose_4.0,,inner folds only,,,,,,,,,,,,,,,,,0.4626598261866206,0.42333701880300306,4.0,0.6625,0.646875,0,0,17,0,,,,,,,,,,,,,,,,
+DeepSeek,1,dose_6.0,,inner folds only,,,,,,,,,,,,,,,,,0.36482613278229936,0.472271933750452,6.0,0.8375,0.69375,0,0,19,0,,,,,,,,,,,,,,,,
+DeepSeek,2,dose_8.0,,inner folds only,,,,,,,,,,,,,,,,,0.510608061635885,-0.18908110364505737,8.0,0.725,0.671875,0,0,15,0,,,,,,,,,,,,,,,,
+DeepSeek,3,dose_6.0,,inner folds only,,,,,,,,,,,,,,,,,0.4047926024452171,0.42396257419838174,6.0,0.8,0.684375,0,0,14,0,,,,,,,,,,,,,,,,
+DeepSeek,4,dose_6.0,,inner folds only,,,,,,,,,,,,,,,,,0.38620808274409135,0.42463863047356676,6.0,0.85,0.696875,0,0,15,0,,,,,,,,,,,,,,,,
+Llama,0,detector_L8_dose1.0,,inner train/validation only,,,,,,,,,,,,,,,,,,,,,,,,,,8,0.9984379879531751,0.9,0.0,18,0,0.9924999999999999,,,,,,,,,
+Llama,1,detector_L16_dose1.0,,inner train/validation only,,,,,,,,,,,,,,,,,,,,,,,,,,16,0.9989570999460842,0.95,0.0,19,0,0.9991666666666666,,,,,,,,,
+Llama,2,detector_L23_dose1.0,,inner train/validation only,,,,,,,,,,,,,,,,,,,,,,,,,,23,0.8404064469621465,1.0,0.0,20,0,1.0,,,,,,,,,
+Llama,3,detector_L16_dose1.0,,inner train/validation only,,,,,,,,,,,,,,,,,,,,,,,,,,16,0.9978680910574788,0.95,0.0,19,0,0.9983333333333333,,,,,,,,,
+Llama,4,detector_L16_dose1.0,,inner train/validation only,,,,,,,,,,,,,,,,,,,,,,,,,,16,0.9996856740855278,0.95,0.0,19,0,0.9991666666666666,,,,,,,,,
+Gemma,0,detector_L20_dose3.0,,"recomputed under A/B<=1pp,D<=3pp using saved inner-validation rows",,,,,,,,,,,,,,,,,,,3.0,,,,,,,,,,,,,,0,0,0,False,"{'layer': 20, 'threshold': 0.9892893240161518, 'val_recall_C': 0.95, 'val_fpr_nonC': 0.0, 'val_tp': 19, 'val_fp': 0, 'val_auroc': 0.9991666666666666}",40,41,0.6,0.05
+Gemma,1,detector_L31_dose3.0,,"recomputed under A/B<=1pp,D<=3pp using saved inner-validation rows",,,,,,,,,,,,,,,,,,,3.0,,,,,,,,,,,,,,0,0,0,False,"{'layer': 31, 'threshold': 0.9998783505999085, 'val_recall_C': 0.75, 'val_fpr_nonC': 0.0, 'val_tp': 15, 'val_fp': 0, 'val_auroc': 0.995}",40,41,0.5,0.05
+Gemma,2,detector_L20_dose3.0,,"recomputed under A/B<=1pp,D<=3pp using saved inner-validation rows",,,,,,,,,,,,,,,,,,,3.0,,,,,,,,,,,,,,0,0,0,False,"{'layer': 20, 'threshold': 0.9985935074311069, 'val_recall_C': 1.0, 'val_fpr_nonC': 0.0, 'val_tp': 20, 'val_fp': 0, 'val_auroc': 1.0}",38,39,0.6000000000000001,0.05
+Gemma,3,detector_L10_dose3.0,,"recomputed under A/B<=1pp,D<=3pp using saved inner-validation rows",,,,,,,,,,,,,,,,,,,3.0,,,,,,,,,,,,,,0,0,0,False,"{'layer': 10, 'threshold': 0.9998734630023243, 'val_recall_C': 0.85, 'val_fpr_nonC': 0.0, 'val_tp': 17, 'val_fp': 0, 'val_auroc': 0.9741666666666666}",39,40,0.55,0.05
+Gemma,4,detector_L31_dose3.0,,"recomputed under A/B<=1pp,D<=3pp using saved inner-validation rows",,,,,,,,,,,,,,,,,,,3.0,,,,,,,,,,,,,,0,0,0,False,"{'layer': 31, 'threshold': 0.9855994220340009, 'val_recall_C': 1.0, 'val_fpr_nonC': 0.0, 'val_tp': 20, 'val_fp': 0, 'val_auroc': 1.0}",38,39,0.65,0.05

@@ -1,0 +1,6 @@
+model,fold,self_restoration_max_abs_margin_error,baseline_vs_cached_max_abs_margin_error,max_relative_injected_norm_error
+qwen,0,0.0,0.0,0.0006196641810776316
+qwen,1,0.0,0.0,0.0005927055964620829
+qwen,2,0.0,0.0,0.0008723828339136434
+qwen,3,0.0,0.0,0.0015542378699212732
+qwen,4,0.0,0.0,0.0008438902298306568

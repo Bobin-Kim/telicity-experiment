@@ -1,0 +1,78 @@
+{
+  "status": "prepared",
+  "model": "qwen",
+  "model_display": "Qwen2.5-7B-Instruct",
+  "model_path": "/data/sl_datasets/models/Qwen/Qwen2.5-7B-Instruct",
+  "depth": 28,
+  "hidden": 3584,
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "prompt_sha256": "5f87b783a75ec76d7be8b7d3c272bcfe23cac3289edc19c22ea7a028aa721402",
+  "label_names": [
+    "True",
+    "False",
+    "Unknown"
+  ],
+  "label_first_token_ids": [
+    2514,
+    4049,
+    13790
+  ],
+  "margin": "z_True-z_Unknown",
+  "folds": 5,
+  "fold_policy": "canonical seed-42 verb-disjoint folds",
+  "conditions": [
+    "baseline",
+    "telicity_plus",
+    "telicity_minus",
+    "decision_plus",
+    "decision_minus",
+    "random_plus",
+    "random_minus",
+    "self_restore"
+  ],
+  "expected_intervention_rows": 1600,
+  "candidate_layers": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "ridge_grid": [
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "primary_unit": "held-out verb fold",
+  "dose": "outer-training projection SD at selected layer",
+  "hook": "selected block-output residual at last non-padding answer position",
+  "offline": true,
+  "source_hashes": {
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_telicity_validation_suite_A4/baseline_cd_reps.npz": "2d8a1b6afd46315dc011457d8a2c73eb638254bf210958e1602f6a43f10f1c26",
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2bc_continuous_preference_A23/validation_audit.json": "7feda4b0581209cf2fe3f92a06ab0d206dacb3e73dfdad769caf28edd33fd77f",
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2bc_continuous_preference_A23/b1_selected_layers.csv": "ce21cf6da650b878f007b4cce7db51c30d13ced6eddafb03298792588c3a9ed2",
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2bc_continuous_preference_A23/b1_preference_axes.npy": "63d376a1060e8721835f3214d75b9283caeb71ee2ad891326588ccad91480f04",
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_telicity_decision_mediation_A29/telicity_patch_assets.npz": "6b5e5c3916580ba61ffb6fd3b07203230ec086207580d3d75c684c8136590b0d",
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_telicity_decision_mediation_A29/selected_telicity_layers.csv": "3b4c12a2647fe662c15987a98942be4594b448e288103dec022e8fd5cb728b70",
+    "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2_conditional_gating_A21/full_layer_component_cache.npz": "6da150bc4abd238cbdcb02b9c23c749e8d26f939f8e81e43e50afeb976443a06"
+  },
+  "gpu_policy": {
+    "physical_gpu": 0,
+    "process_device": "cuda:0",
+    "forbidden": [
+      2,
+      3
+    ]
+  },
+  "batch_size": 16
+}

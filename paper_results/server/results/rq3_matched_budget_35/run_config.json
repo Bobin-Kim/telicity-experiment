@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "fold_seed": 42,
+  "candidate_counts": {
+    "Qwen": 12,
+    "Mistral": 35,
+    "DeepSeek": 35,
+    "Llama": 35,
+    "Gemma": 35
+  },
+  "maximum_per_model": 35,
+  "constraints": {
+    "A_max_loss_pp": 1,
+    "B_max_loss_pp": 1,
+    "D_max_loss_pp": 3
+  },
+  "reuse": {
+    "Qwen": "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_experiment6_adaptive_ta_l20_l27_A27/per_example.csv",
+    "DeepSeek": "/home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/results/deepseek-7b-rq2/rq2_4_d_safe_exploratory",
+    "Llama": "/home/bobin/imperfective_paradox_repro/results/rq3_llama_gemma_confirmatory/llama",
+    "Gemma": "/home/bobin/imperfective_paradox_repro/results/rq3_gemma_d5_budget"
+  },
+  "new_gpu_inference": "Mistral selected held-out configurations only",
+  "offline": true,
+  "audit": "PASS"
+}
