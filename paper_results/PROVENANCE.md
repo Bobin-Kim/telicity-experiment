@@ -23,7 +23,8 @@ Status codes: **EXACT** (matches to the printed precision) · **STALE** (the pap
 | Table 5 cosine (telicity vs decision) | `results/rq2_core_replication/<model>/selected_layers_and_directions.json`, `results/mistral_l29_same_site_telicity/publication_row.csv` | EXACT | Mistral −0.0015. |
 | §4.2.1 cosine with local gradient 0.162–0.285 | `results/controls/decision_direction/summaries/output_readout_geometry_fold.csv` | EXACT | Measured at the final-calibration sites (Qwen L27 block input; DeepSeek block 28), not at the Table 4 sites. |
 | §4.2.1 local-gradient control 0.535–8.678 | `results/controls/decision_direction/summaries/output_readout_summary.csv` | EXACT | Same sites as above. |
-| Table 6 (neutralization), Qwen/Mistral/DeepSeek/Gemma | `results/rq2_final_decision_neutralization/manuscript_ready.csv` | EXACT | |
+| Table 6 (neutralization), Qwen/Mistral/DeepSeek | `results/rq2_final_decision_neutralization/manuscript_ready.csv` | EXACT | |
+| Table 6, Gemma row | same | **STALE (small)** | Margins match (0.677 / 0.825). The paper has c 1.272 / 1.540 and ∆m −0.535 / −0.647; the file has 1.274 / 1.539 and −0.527 / −0.640. |
 | Table 6, **Llama row** | same | **STALE** | The paper has c_C 1.610, c_D 1.586, ∆m_C −0.999, ∆m_D −0.978. The file has 1.558, 1.531, **−2.279, −2.273**, with flip rates C 0.73 and D 0.79. |
 | §4.2.2 Qwen-32B: G_tel −4.438 / −7.183; C accuracy 41% / 87% | `results/qwen_7b_32b_telicity_causal_scaling/model_summary.csv` (audit PASS, Oct 1) | EXACT | Paired ∆G = −2.74 [−3.16, −2.33]. |
 | §4.2.2 BA 0.877 vs 0.811; \|r\| 0.991 vs 0.866 | older `results/qwen7_qwen32_telicity_utilization/` | **STALE** | The Oct 1 run has BA **0.882 vs 0.765** and \|r\| **0.984 vs 0.986**, so there is no stronger association in 32B. |
@@ -38,7 +39,7 @@ Status codes: **EXACT** (matches to the printed precision) · **STALE** (the pap
 | Analysis | Source | Finding |
 |---|---|---|
 | Class-distance intervention (shift the full C→D distance along the telicity direction) | `results/reviewer_response_robustness/rq2_class_distance/model_summary.csv` | \|∆m\| ≤ 0.12 in every model; zero True→Unknown flips in Group C for 4 of 5 models (Gemma 1). |
-| Matched random direction at the Table 3/4 site | `results/rq2_core_replication/combined_five_model/summary.csv` | Random gain is near zero, e.g. Llama 0.003 [−0.19, 0.20]. |
+| Matched random direction at the Table 3/4 site | `results/rq2_core_replication/combined_five_model/summary.csv`; Mistral: `results/mistral_l29_same_site_telicity/model_summary.csv` | Group C random gains: Qwen 0.162 [−0.153, 0.477], DeepSeek −0.018 [−0.072, 0.036], Llama 0.003 [−0.192, 0.198], Gemma −0.027 [−0.075, 0.022], Mistral −0.0003 (one direction). Telicity gains lie within the random interval for 4/5 models; for Mistral the telicity effect (−0.058) exceeds random but stays small. The `combined_five_model` Mistral row is the obsolete L32 run (decision gain 0), so don't use it. |
 | Prompt-wording and label-mapping transfer of the decision direction | `results/controls/decision_direction/summaries/{prompt,label}_*` | Not yet summarized. |
 | Paired fold-stratified bootstrap of correction ∆acc | `results/reviewer_response_final/bootstrap_ci.csv` | |
 | Norm-matched gain ratio (derived) | projection SDs in `results/rq2_core_replication/<model>/selected_layers_and_directions.json` and `results/mistral_l29_same_site_telicity/fold_config.csv` | At equal L2 step the decision direction is **5.7–57.8×** stronger (Qwen 50.6, Mistral 5.7, DeepSeek 15.7, Llama 57.8, Gemma 9.8), vs 22.4–320.3× per own-SD. This is a linear rescaling of the existing gains, not a new run. |
