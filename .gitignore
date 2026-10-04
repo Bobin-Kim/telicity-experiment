@@ -10,6 +10,7 @@ venv/
 .env.*
 results/
 smoke/
+local_results/
 *.log
 *.pid
 *.lock
@@ -18,3 +19,4 @@ smoke/
 *.pt
 *.pth
 *.ckpt
+.DS_Store
