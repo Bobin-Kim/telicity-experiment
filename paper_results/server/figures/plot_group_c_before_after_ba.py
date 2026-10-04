@@ -66,20 +66,19 @@ def main() -> None:
         zorder=3,
     )
 
-    for i, (b, a, delta) in enumerate(zip(before, after, delta_pp)):
-        y_mid = (b + a) / 2
+    for i, (_b, a, delta) in enumerate(zip(before, after, delta_pp)):
         ax.text(
-            i,
-            y_mid,
+            i + width / 2,
+            a + 0.025,
             f"+{delta} pp",
             ha="center",
-            va="center",
+            va="bottom",
             fontsize=7,
         )
 
-    ax.set_ylabel("Group C balanced accuracy (BA)")
+    ax.set_ylabel("Group C Accuracy")
     ax.set_xticks(x, models, rotation=20, ha="right", rotation_mode="anchor")
-    ax.set_ylim(0, 0.9)
+    ax.set_ylim(0, 0.94)
     ax.set_yticks(np.arange(0, 1.0, 0.2))
     ax.grid(axis="y", color="0.88", linewidth=0.55, zorder=0)
     ax.spines["top"].set_visible(False)

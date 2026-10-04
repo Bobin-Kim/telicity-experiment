@@ -41,8 +41,17 @@ Status codes: **EXACT** (matches to the printed precision) · **STALE** (the pap
 | Class-distance intervention (shift the full C→D distance along the telicity direction) | `results/reviewer_response_robustness/rq2_class_distance/model_summary.csv` | \|∆m\| ≤ 0.12 in every model; zero True→Unknown flips in Group C for 4 of 5 models (Gemma 1). |
 | Matched random direction at the Table 3/4 site | `results/rq2_core_replication/combined_five_model/summary.csv`; Mistral: `results/mistral_l29_same_site_telicity/model_summary.csv` | Group C random gains: Qwen 0.162 [−0.153, 0.477], DeepSeek −0.018 [−0.072, 0.036], Llama 0.003 [−0.192, 0.198], Gemma −0.027 [−0.075, 0.022], Mistral −0.0003 (one direction). Telicity gains lie within the random interval for 4/5 models; for Mistral the telicity effect (−0.058) exceeds random but stays small. The `combined_five_model` Mistral row is the obsolete L32 run (decision gain 0), so don't use it. |
 | Prompt-wording and label-mapping transfer of the decision direction | `results/controls/decision_direction/summaries/{prompt,label}_*` | Not yet summarized. |
-| Paired fold-stratified bootstrap of correction ∆acc | `results/reviewer_response_final/bootstrap_ci.csv` | |
+| Paired fold-stratified bootstrap of correction ∆acc (older adaptive run) | `results/reviewer_response_final/bootstrap_ci.csv` | Superseded by the verb-cluster bootstrap below. |
 | Norm-matched gain ratio (derived) | projection SDs in `results/rq2_core_replication/<model>/selected_layers_and_directions.json` and `results/mistral_l29_same_site_telicity/fold_config.csv` | At equal L2 step the decision direction is **5.7–57.8×** stronger (Qwen 50.6, Mistral 5.7, DeepSeek 15.7, Llama 57.8, Gemma 9.8), vs 22.4–320.3× per own-SD. This is a linear rescaling of the existing gains, not a new run. |
+
+## Added by the main author on 2026-10-04 (copied the same evening)
+
+| Analysis | Source | Finding / effect on the draft |
+|---|---|---|
+| Verb-cluster bootstrap CIs for correction (20,000 draws, percentile) | `results/rq3_steering_baseline_verb_bootstrap/verb_cluster_bootstrap_ci.csv` | ∆C: Qwen +14 [8, 21], Mistral +55 [45, 65], DeepSeek +79 [71, 87], Llama +46 [36, 56], Gemma +52 [42, 62]. Use these (not fold-level t) for Fig. 3 / §3.6. |
+| Matched random direction for the frozen correction rules (same site, same L2 dose) | `results/rq3_steering_baseline_verb_bootstrap/control_summary.csv`, `REPORT_KO.md` | Random direction gives ∆C of 0 pp (Qwen, Mistral, DeepSeek) or +1 pp (Llama, Gemma), so the correction effect depends on the direction, not only on detector + dose. Not yet in the draft. |
+| Cross-context telicity validation (A/B ↔ C/D transfer) | `results/telicity_cross_context_validation/REPORT_KO.md` and summaries | Telicity information transfers across contexts (AUROC 0.887–0.946) but with context-dependent geometry (probe cosine 0.18–0.38); A/B-derived directions are also causally weak on Group C. Not yet in the draft. |
+| Fig. 3 y-axis label | `figures/plot_group_c_before_after_ba.py` (modified 2026-10-04) | Now reads "Group C Accuracy". |
 
 ## Note on `local_results/` (generic pipeline)
 

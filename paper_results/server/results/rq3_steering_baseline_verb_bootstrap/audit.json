@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": {
+    "models": true,
+    "rows_each": true,
+    "all_5_folds": true,
+    "paired_400": true,
+    "bootstrap_unit": "verb",
+    "draws": 20000,
+    "no_heldout_control_tuning": true,
+    "mistral_readout_baseline_identity": "proposed actuator is exact final-readout direction",
+    "deepseek_readout_baseline_identity": "proposed actuator is exact final-readout direction"
+  },
+  "control_definition": "same selected detector, gate, hook site, and physical injection norm; deterministic fold-specific random direction orthogonal to proposed direction; no control selection on held-out outcomes",
+  "scope_note": "Mistral and DeepSeek proposed actuators are already the simple exact True-to-Unknown final-readout baseline."
+}
