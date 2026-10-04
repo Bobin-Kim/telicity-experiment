@@ -1,0 +1,6 @@
+model,fold,self_restoration_max_abs_margin_error,baseline_vs_cached_max_abs_margin_error,max_relative_injected_norm_error
+deepseek,0,0.0,0.0,0.00021236903638070998
+deepseek,1,0.0,0.0,8.724817804555093e-05
+deepseek,2,0.0,0.0,0.00019932302361035868
+deepseek,3,0.0,0.0,0.00015107968609817798
+deepseek,4,0.0,0.0,0.00011144756202227298

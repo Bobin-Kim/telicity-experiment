@@ -1,0 +1,11 @@
+model,group,decision_gain_existing_same_site_1sd,new_telicity_gain_1sd,absolute_gain_ratio,comparison
+qwen,C,4.60375,-0.014374999999999999,320.2608695652174,same site/group/fold-equal gain; both ±1 own-direction projection SD
+qwen,D,4.726249999999999,-0.012499999999999999,378.09999999999997,same site/group/fold-equal gain; both ±1 own-direction projection SD
+mistral,C,2.1025,-0.0578125,36.36756756756757,same site/group/fold-equal gain; both ±1 own-direction projection SD
+mistral,D,1.95546875,-0.04390625,44.537366548042705,same site/group/fold-equal gain; both ±1 own-direction projection SD
+deepseek,C,0.74859375,-0.033359375000000004,22.44028103044496,same site/group/fold-equal gain; both ±1 own-direction projection SD
+deepseek,D,0.74765625,-0.030156249999999996,24.79274611398964,same site/group/fold-equal gain; both ±1 own-direction projection SD
+llama,C,1.472734375,-0.00703125,209.45555555555555,same site/group/fold-equal gain; both ±1 own-direction projection SD
+llama,D,1.4753125,-0.006796874999999999,217.05747126436785,same site/group/fold-equal gain; both ±1 own-direction projection SD
+gemma,C,0.4165234375,-0.0115234375,36.1457627118644,same site/group/fold-equal gain; both ±1 own-direction projection SD
+gemma,D,0.41769531249999997,-0.011992187499999998,34.83061889250815,same site/group/fold-equal gain; both ±1 own-direction projection SD

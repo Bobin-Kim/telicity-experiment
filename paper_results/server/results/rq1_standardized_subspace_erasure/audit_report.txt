@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "all_75_jobs": true,
+  "all_five_models": true,
+  "five_folds_three_depths": true,
+  "target_0_50_everywhere": true,
+  "candidate_ranks_0_to_24": true,
+  "outer_heldout_never_selects_rank": true,
+  "train_test_sizes": true,
+  "finite_results": true,
+  "same_answer_position": true,
+  "same_depths": true,
+  "same_recovery_formula": true,
+  "ridge_alpha_0_01": true,
+  "no_posthoc_rank_expansion": true,
+  "expected_jobs": 75,
+  "completed_jobs": 75,
+  "rank_cap_flags": [
+    {
+      "model": "DeepSeek",
+      "layer": 15,
+      "fold": 0,
+      "selected_inner_cv_ba": 0.5
+    },
+    {
+      "model": "DeepSeek",
+      "layer": 23,
+      "fold": 2,
+      "selected_inner_cv_ba": 0.525
+    },
+    {
+      "model": "Gemma",
+      "layer": 21,
+      "fold": 1,
+      "selected_inner_cv_ba": 0.575
+    },
+    {
+      "model": "Gemma",
+      "layer": 21,
+      "fold": 4,
+      "selected_inner_cv_ba": 0.5625
+    },
+    {
+      "model": "Gemma",
+      "layer": 32,
+      "fold": 3,
+      "selected_inner_cv_ba": 0.56875
+    },
+    {
+      "model": "Gemma",
+      "layer": 32,
+      "fold": 4,
+      "selected_inner_cv_ba": 0.5875
+    }
+  ],
+  "aggregation": "equal mean of three depths within fold; equal mean/t(4) CI over five folds",
+  "recovery_formula": "(after_mlp_ba-after_erasure_ba)/(before_erasure_ba-after_erasure_ba)"
+}

@@ -1,0 +1,272 @@
+{
+  "status": "PASS",
+  "models": {
+    "qwen": {
+      "status": "PASS",
+      "rows": 200,
+      "unique_examples": 200,
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groups": [
+        "C",
+        "D"
+      ],
+      "source": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_endogenous_true_preference/qwen/per_example_endogenous_neutralization.csv"
+      ],
+      "layers": [
+        27,
+        27,
+        27,
+        27,
+        27
+      ],
+      "sites": [
+        "block_input"
+      ],
+      "direction_sources": [
+        "/home/bobin/imperfective_paradox_repro/results/qwen25_7b_rq2bc_continuous_preference_A23/b1_preference_axes.npy"
+      ],
+      "direction_hashes": [
+        "a68a5541f84bd2591381dd540ab3a8bbc86253d1da045257cf23e9e213c1693f",
+        "af357a042a3c0c05a280e2cb8de2bc21d1f9161324524e9e7319b7691b59e68c",
+        "2d3e231e4a10f2c38738ff827ce87411e1aaad926ecba0919031b1b08a86a05b",
+        "0ab0d7a8785f2afe963fe8c3c3fc46b3f7183ec0f443ed10f320a130b7f5eae4",
+        "87f9cd7a61ec45b58b9859de712544a7203aa701cb1536a793a5f5cecc60f7d1"
+      ],
+      "forward_validation": {
+        "source_audit": "/home/bobin/imperfective_paradox_repro/results/rq2_endogenous_true_preference/qwen/audit.json",
+        "source_audit_status": "PASS",
+        "baseline_reproduction_max_abs_error": 0.0,
+        "identity_hook_max_abs_error": 0.0,
+        "projection_max_abs_error": 0.005177974700927734,
+        "off_axis_max_norm": 0.4270000755786896,
+        "all_actual_forward": true
+      }
+    },
+    "mistral": {
+      "status": "PASS",
+      "rows": 200,
+      "unique_examples": 200,
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groups": [
+        "C",
+        "D"
+      ],
+      "source": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_endogenous_true_preference/mistral/per_example_endogenous_neutralization.csv"
+      ],
+      "layers": [
+        29,
+        29,
+        29,
+        29,
+        29
+      ],
+      "sites": [
+        "block_output"
+      ],
+      "direction_sources": [
+        "/home/bobin/imperfective_paradox_repro/results/mistral7b_matched_magnitude_gain_A33/intervention_assets.npz"
+      ],
+      "direction_hashes": [
+        "8a4dfe1f6adbb1cddf4f0d0510fc8fe1e408cebe0e300daeddd201d7a92c2e5e",
+        "e5bd69b95af0168843b6d5a5f25ef835fc64c1f107f530855f70b6a2858e48b2",
+        "29df62173a93e0e56c39a3ea4cbcdeb22ad904e9fb20f9529df7484d8980a35c",
+        "978e87f418049e2dcb4233a9eea6234ca095900f475811646ed30efeadb05d90",
+        "e1534e33ef9c1492ead8688b7cfcb0d7a67345caedb8c79da6040cfd34fd10e1"
+      ],
+      "forward_validation": {
+        "source_audit": "/home/bobin/imperfective_paradox_repro/results/rq2_endogenous_true_preference/mistral/audit.json",
+        "source_audit_status": "PASS",
+        "baseline_reproduction_max_abs_error": 0.0,
+        "identity_hook_max_abs_error": 0.0,
+        "projection_max_abs_error": 0.0307539701461792,
+        "off_axis_max_norm": 0.04575162008404732,
+        "all_actual_forward": true
+      }
+    },
+    "deepseek": {
+      "status": "PASS",
+      "rows": 200,
+      "unique_examples": 200,
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groups": [
+        "C",
+        "D"
+      ],
+      "source": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_endogenous_true_preference/deepseek/per_example_endogenous_neutralization.csv"
+      ],
+      "layers": [
+        28,
+        28,
+        28,
+        28,
+        28
+      ],
+      "sites": [
+        "block_output"
+      ],
+      "direction_sources": [
+        "/home/bobin/MULTIMODEL_TRUE_UNKNOWN_PREFERENCE_RUNNER/results/deepseek-7b-telicity-rq/full_depth_cache.npz"
+      ],
+      "direction_hashes": [
+        "7aa9d16e17d40dbf42e946c5f53621cd2e0ea684b5899ebed9ff75f31d4ca0dc",
+        "129be3886cf1b8a4735bc894570b5b140c767c5f5c5880c34b9596465319b0c8",
+        "8461ce06dae678d601de4ce334a427096303378fc04800a94351b5767a993ecb",
+        "0601904a6e9179d88b8070b0143785724ee40cdd8b293a709e79ded72be933ae",
+        "93328058a8a9ec24715311ce60410e3ddca93294ccf6216a1042485d3123f555"
+      ],
+      "forward_validation": {
+        "source_audit": "/home/bobin/imperfective_paradox_repro/results/rq2_endogenous_true_preference/deepseek/audit.json",
+        "source_audit_status": "PASS",
+        "baseline_reproduction_max_abs_error": 0.0,
+        "identity_hook_max_abs_error": 0.0,
+        "projection_max_abs_error": 0.0005564689636230469,
+        "off_axis_max_norm": 0.07675830274820328,
+        "all_actual_forward": true
+      }
+    },
+    "llama": {
+      "status": "PASS",
+      "rows": 200,
+      "unique_examples": 200,
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groups": [
+        "C",
+        "D"
+      ],
+      "source": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/llama/folds/fold0/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/llama/folds/fold1/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/llama/folds/fold2/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/llama/folds/fold3/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/llama/folds/fold4/neutralized.csv"
+      ],
+      "layers": [
+        31,
+        31,
+        31,
+        31,
+        28
+      ],
+      "sites": [
+        "block_output"
+      ],
+      "direction_sources": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_core_replication/llama31_8b/intervention_assets.npz"
+      ],
+      "direction_hashes": [
+        "347c053b5fb7f7fef2b0050f6193b87735718ec6dd15c48dfe593d98a9c0da4a",
+        "1002551949675b68f20d074dad71e9372829f8dd9508c3503d5db6ada0a7664b",
+        "ed23c82a591c23ef5c215ff623a6e74b93c5f8c35803f10e787432ec22f838de",
+        "65e53da528608beca22641d75885515dd828b749e91946da47b693e443643270",
+        "7a169a6783aff500c1aa4a74f560d986bd2efb42f94b396125a870f309143834"
+      ],
+      "forward_validation": {
+        "source_audit": "new validation in this aggregation",
+        "source_audit_status": "PASS",
+        "baseline_reproduction_max_abs_error": 0.0,
+        "baseline_reproduction_tolerance": 0.02,
+        "projection_max_abs_error": 0.0001277923583984375,
+        "projection_tolerance": 0.05,
+        "off_axis_max_norm": 0.015921790152788162,
+        "off_axis_roundoff_tolerance": 0.5,
+        "all_actual_forward": true
+      }
+    },
+    "gemma": {
+      "status": "PASS",
+      "rows": 200,
+      "unique_examples": 200,
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "groups": [
+        "C",
+        "D"
+      ],
+      "source": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/gemma/folds/fold0/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/gemma/folds/fold1/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/gemma/folds/fold2/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/gemma/folds/fold3/neutralized.csv",
+        "/home/bobin/imperfective_paradox_repro/results/rq2_final_decision_neutralization/gemma/folds/fold4/neutralized.csv"
+      ],
+      "layers": [
+        40,
+        40,
+        38,
+        39,
+        38
+      ],
+      "sites": [
+        "block_output"
+      ],
+      "direction_sources": [
+        "/home/bobin/imperfective_paradox_repro/results/rq2_core_replication/gemma2_9b/intervention_assets.npz"
+      ],
+      "direction_hashes": [
+        "03ab78e58eebc84d6d75879a1d47c19ed1d6559f7e113688aa8c38586f59a979",
+        "ec2512ff6ad1f3b692d10e87eb0af9d84aa2e61b5195285d478f20f259995a27",
+        "998064e05a8e09f0c278e6e8101b8d0db0a3ff259ddc90c2e0f1037630b8511b",
+        "22002320cba7dc405061623f72c430393ddcf883b5f5e3719afe82f5f94bbfa3",
+        "d919751794e462aec8e2d5da074feaeaa1a627b62ecc39b229b338834c0f13a1"
+      ],
+      "forward_validation": {
+        "source_audit": "new validation in this aggregation",
+        "source_audit_status": "PASS",
+        "baseline_reproduction_max_abs_error": 0.03125,
+        "baseline_reproduction_tolerance": 0.04,
+        "projection_max_abs_error": 0.0017039775848388672,
+        "projection_tolerance": 0.05,
+        "off_axis_max_norm": 0.11978457868099213,
+        "off_axis_roundoff_tolerance": 0.5,
+        "all_actual_forward": true
+      }
+    }
+  },
+  "folds": 5,
+  "heldout_cd_examples_per_model": 200,
+  "training_heldout_separation": "PASS; direction selection/fitting, OLS beta_0/beta_1, a_0 and sigma use fold != heldout fold",
+  "direction_norm": "unit L2 per fold",
+  "sigma_ddof": 0,
+  "neutralization": "actual-forward h_neutral = h + (a_0-a) v_dec at the exact selected answer-position site",
+  "aggregation": "compute within-fold means first, then unweighted mean of five folds",
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 42,
+    "method": "fold-stratified example-level resampling; unweighted mean of five resampled fold means"
+  },
+  "delta_m": "m_neutral - m_baseline; negative means reduced True preference",
+  "legacy_mistral_l32_excluded": true,
+  "mistral_direction": "fixed zero-based L29 block-output rank-4 PCA -> raw-space QR -> Ridge(alpha=10) direction"
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "cpu_only": true,
+  "torch_imported": false,
+  "model_weights_loaded": false,
+  "forward_passes": 0,
+  "existing_table5_all_values_reproduced_from_raw": true,
+  "new_decision_matches_table5_telicity_site_all_folds": {
+    "qwen": false,
+    "mistral": true,
+    "deepseek": false,
+    "llama": true,
+    "gemma": true
+  },
+  "qwen_discrepancy_entirely_in_decision_numerator": true,
+  "deepseek_discrepancy_entirely_in_decision_numerator": true,
+  "methods_aggregation": "abs(mean_f G_dec,f) / abs(mean_f G_tel,f), equal fold weighting"
+}

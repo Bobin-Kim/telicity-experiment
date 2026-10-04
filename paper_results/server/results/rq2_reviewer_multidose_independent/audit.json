@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "models": [
+    "qwen",
+    "mistral",
+    "deepseek",
+    "llama",
+    "gemma"
+  ],
+  "folds_each": 5,
+  "missing": 0,
+  "failed": 0,
+  "dataset_sha256": "ddd01d06b18b9bab24abb5bc92a8eb740bb145123658fa9a10bd86e38b4bdb5a",
+  "telicity_source": "/home/bobin/imperfective_paradox_repro/results/reviewer_response_robustness/rq2_telicity_multidose/model_summary.csv",
+  "telicity_source_reused": true,
+  "actual_forward": true,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 42,
+  "equal_fold_weighting": true,
+  "decision_doses_sd": [
+    0.5,
+    1.0,
+    2.0,
+    3.0
+  ],
+  "centroid_dose_sd": 1.0,
+  "centroid_is_regression_independent": true,
+  "offline": true
+}

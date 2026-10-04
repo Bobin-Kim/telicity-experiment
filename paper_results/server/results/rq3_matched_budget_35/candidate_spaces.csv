@@ -1,0 +1,153 @@
+model,fold,candidate_id,detector_site,threshold,actuator_site,dose,predefined_without_outcomes
+Qwen,shared,fixed_l27,precomputed T×A gate,.7,fixed_l27,fixed by named original candidate,1
+Qwen,shared,adaptive_l27,precomputed T×A gate,.7,adaptive_l27,fixed by named original candidate,1
+Qwen,shared,l20_only,precomputed T×A gate,.7,l20_only,fixed by named original candidate,1
+Qwen,shared,l20_l27,precomputed T×A gate,.7,l20_l27,fixed by named original candidate,1
+Qwen,shared,l20_heads_l27,precomputed T×A gate,.7,l20_heads_l27,fixed by named original candidate,1
+Qwen,shared,threshold_0.3,precomputed T×A gate,0.3,threshold_0.3,fixed by named original candidate,1
+Qwen,shared,threshold_0.4,precomputed T×A gate,0.4,threshold_0.4,fixed by named original candidate,1
+Qwen,shared,threshold_0.5,precomputed T×A gate,0.5,threshold_0.5,fixed by named original candidate,1
+Qwen,shared,threshold_0.6,precomputed T×A gate,0.6,threshold_0.6,fixed by named original candidate,1
+Qwen,shared,threshold_0.7,precomputed T×A gate,0.7,threshold_0.7,fixed by named original candidate,1
+Qwen,shared,threshold_0.8,precomputed T×A gate,0.8,threshold_0.8,fixed by named original candidate,1
+Qwen,shared,threshold_0.9,precomputed T×A gate,0.9,threshold_0.9,fixed by named original candidate,1
+Mistral,0,f0_c0,answer residual zero-based L0,outer-train score quantile 0.8,final RMSNorm output exact True-minus-Unknown readout,physical L2 20.0,1
+Mistral,0,f0_c1,answer residual zero-based L5,outer-train score quantile 0.5,final RMSNorm output exact True-minus-Unknown readout,physical L2 80.0,1
+Mistral,0,f0_c2,answer residual zero-based L10,outer-train score quantile 0.9,final RMSNorm output exact True-minus-Unknown readout,physical L2 120.0,1
+Mistral,0,f0_c3,answer residual zero-based L16,outer-train score quantile 0.65,final RMSNorm output exact True-minus-Unknown readout,physical L2 40.0,1
+Mistral,0,f0_c4,answer residual zero-based L21,outer-train score quantile 0.95,final RMSNorm output exact True-minus-Unknown readout,physical L2 100.0,1
+Mistral,0,f0_c5,answer residual zero-based L26,outer-train score quantile 0.75,final RMSNorm output exact True-minus-Unknown readout,physical L2 2.0,1
+Mistral,0,f0_c6,answer residual zero-based L31,outer-train score quantile 0.85,final RMSNorm output exact True-minus-Unknown readout,physical L2 60.0,1
+Mistral,1,f1_c0,answer residual zero-based L0,outer-train score quantile 0.8,final RMSNorm output exact True-minus-Unknown readout,physical L2 20.0,1
+Mistral,1,f1_c1,answer residual zero-based L5,outer-train score quantile 0.5,final RMSNorm output exact True-minus-Unknown readout,physical L2 80.0,1
+Mistral,1,f1_c2,answer residual zero-based L10,outer-train score quantile 0.9,final RMSNorm output exact True-minus-Unknown readout,physical L2 120.0,1
+Mistral,1,f1_c3,answer residual zero-based L16,outer-train score quantile 0.65,final RMSNorm output exact True-minus-Unknown readout,physical L2 40.0,1
+Mistral,1,f1_c4,answer residual zero-based L21,outer-train score quantile 0.95,final RMSNorm output exact True-minus-Unknown readout,physical L2 100.0,1
+Mistral,1,f1_c5,answer residual zero-based L26,outer-train score quantile 0.75,final RMSNorm output exact True-minus-Unknown readout,physical L2 2.0,1
+Mistral,1,f1_c6,answer residual zero-based L31,outer-train score quantile 0.85,final RMSNorm output exact True-minus-Unknown readout,physical L2 60.0,1
+Mistral,2,f2_c0,answer residual zero-based L0,outer-train score quantile 0.8,final RMSNorm output exact True-minus-Unknown readout,physical L2 20.0,1
+Mistral,2,f2_c1,answer residual zero-based L5,outer-train score quantile 0.5,final RMSNorm output exact True-minus-Unknown readout,physical L2 80.0,1
+Mistral,2,f2_c2,answer residual zero-based L10,outer-train score quantile 0.9,final RMSNorm output exact True-minus-Unknown readout,physical L2 120.0,1
+Mistral,2,f2_c3,answer residual zero-based L16,outer-train score quantile 0.65,final RMSNorm output exact True-minus-Unknown readout,physical L2 40.0,1
+Mistral,2,f2_c4,answer residual zero-based L21,outer-train score quantile 0.95,final RMSNorm output exact True-minus-Unknown readout,physical L2 100.0,1
+Mistral,2,f2_c5,answer residual zero-based L26,outer-train score quantile 0.75,final RMSNorm output exact True-minus-Unknown readout,physical L2 2.0,1
+Mistral,2,f2_c6,answer residual zero-based L31,outer-train score quantile 0.85,final RMSNorm output exact True-minus-Unknown readout,physical L2 60.0,1
+Mistral,3,f3_c0,answer residual zero-based L0,outer-train score quantile 0.8,final RMSNorm output exact True-minus-Unknown readout,physical L2 20.0,1
+Mistral,3,f3_c1,answer residual zero-based L5,outer-train score quantile 0.5,final RMSNorm output exact True-minus-Unknown readout,physical L2 80.0,1
+Mistral,3,f3_c2,answer residual zero-based L10,outer-train score quantile 0.9,final RMSNorm output exact True-minus-Unknown readout,physical L2 120.0,1
+Mistral,3,f3_c3,answer residual zero-based L16,outer-train score quantile 0.65,final RMSNorm output exact True-minus-Unknown readout,physical L2 40.0,1
+Mistral,3,f3_c4,answer residual zero-based L21,outer-train score quantile 0.95,final RMSNorm output exact True-minus-Unknown readout,physical L2 100.0,1
+Mistral,3,f3_c5,answer residual zero-based L26,outer-train score quantile 0.75,final RMSNorm output exact True-minus-Unknown readout,physical L2 2.0,1
+Mistral,3,f3_c6,answer residual zero-based L31,outer-train score quantile 0.85,final RMSNorm output exact True-minus-Unknown readout,physical L2 60.0,1
+Mistral,4,f4_c0,answer residual zero-based L0,outer-train score quantile 0.8,final RMSNorm output exact True-minus-Unknown readout,physical L2 20.0,1
+Mistral,4,f4_c1,answer residual zero-based L5,outer-train score quantile 0.5,final RMSNorm output exact True-minus-Unknown readout,physical L2 80.0,1
+Mistral,4,f4_c2,answer residual zero-based L10,outer-train score quantile 0.9,final RMSNorm output exact True-minus-Unknown readout,physical L2 120.0,1
+Mistral,4,f4_c3,answer residual zero-based L16,outer-train score quantile 0.65,final RMSNorm output exact True-minus-Unknown readout,physical L2 40.0,1
+Mistral,4,f4_c4,answer residual zero-based L21,outer-train score quantile 0.95,final RMSNorm output exact True-minus-Unknown readout,physical L2 100.0,1
+Mistral,4,f4_c5,answer residual zero-based L26,outer-train score quantile 0.75,final RMSNorm output exact True-minus-Unknown readout,physical L2 2.0,1
+Mistral,4,f4_c6,answer residual zero-based L31,outer-train score quantile 0.85,final RMSNorm output exact True-minus-Unknown readout,physical L2 60.0,1
+DeepSeek,0,f0_dose2,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,2 SD,1
+DeepSeek,0,f0_dose3,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,3 SD,1
+DeepSeek,0,f0_dose4,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,4 SD,1
+DeepSeek,0,f0_dose5,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,5 SD,1
+DeepSeek,0,f0_dose6,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,6 SD,1
+DeepSeek,0,f0_dose8,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,8 SD,1
+DeepSeek,0,f0_dose10,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,10 SD,1
+DeepSeek,1,f1_dose2,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,2 SD,1
+DeepSeek,1,f1_dose3,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,3 SD,1
+DeepSeek,1,f1_dose4,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,4 SD,1
+DeepSeek,1,f1_dose5,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,5 SD,1
+DeepSeek,1,f1_dose6,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,6 SD,1
+DeepSeek,1,f1_dose8,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,8 SD,1
+DeepSeek,1,f1_dose10,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,10 SD,1
+DeepSeek,2,f2_dose2,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,2 SD,1
+DeepSeek,2,f2_dose3,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,3 SD,1
+DeepSeek,2,f2_dose4,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,4 SD,1
+DeepSeek,2,f2_dose5,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,5 SD,1
+DeepSeek,2,f2_dose6,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,6 SD,1
+DeepSeek,2,f2_dose8,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,8 SD,1
+DeepSeek,2,f2_dose10,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,10 SD,1
+DeepSeek,3,f3_dose2,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,2 SD,1
+DeepSeek,3,f3_dose3,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,3 SD,1
+DeepSeek,3,f3_dose4,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,4 SD,1
+DeepSeek,3,f3_dose5,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,5 SD,1
+DeepSeek,3,f3_dose6,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,6 SD,1
+DeepSeek,3,f3_dose8,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,8 SD,1
+DeepSeek,3,f3_dose10,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,10 SD,1
+DeepSeek,4,f4_dose2,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,2 SD,1
+DeepSeek,4,f4_dose3,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,3 SD,1
+DeepSeek,4,f4_dose4,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,4 SD,1
+DeepSeek,4,f4_dose5,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,5 SD,1
+DeepSeek,4,f4_dose6,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,6 SD,1
+DeepSeek,4,f4_dose8,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,8 SD,1
+DeepSeek,4,f4_dose10,fixed telicity ensemble AND L17:H8 ambiguity detector,cross-fitted safety thresholds,exact final-norm readout,10 SD,1
+Llama,0,f0_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,0,f0_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,0,f0_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,0,f0_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,0,f0_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Llama,0,f0_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Llama,0,f0_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Llama,1,f1_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,1,f1_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,1,f1_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,1,f1_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,1,f1_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Llama,1,f1_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Llama,1,f1_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Llama,2,f2_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,2,f2_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,2,f2_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,2,f2_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,2,f2_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Llama,2,f2_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Llama,2,f2_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Llama,3,f3_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,3,f3_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,3,f3_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,3,f3_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,3,f3_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Llama,3,f3_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Llama,3,f3_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Llama,4,f4_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,4,f4_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,4,f4_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,4,f4_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Llama,4,f4_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Llama,4,f4_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Llama,4,f4_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Gemma,0,f0_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,0,f0_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,0,f0_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,0,f0_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,0,f0_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Gemma,0,f0_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Gemma,0,f0_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Gemma,1,f1_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,1,f1_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,1,f1_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,1,f1_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,1,f1_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Gemma,1,f1_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Gemma,1,f1_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Gemma,2,f2_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,2,f2_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,2,f2_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,2,f2_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,2,f2_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Gemma,2,f2_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Gemma,2,f2_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Gemma,3,f3_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,3,f3_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,3,f3_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,3,f3_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,3,f3_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Gemma,3,f3_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Gemma,3,f3_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1
+Gemma,4,f4_detector0,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,4,f4_detector1,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,4,f4_detector2,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,4,f4_detector3,25/50/75% depth or frozen actuator layer,above max validation non-C score,not evaluated during detector selection,NA,1
+Gemma,4,f4_dose1,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,1 SD,1
+Gemma,4,f4_dose2,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,2 SD,1
+Gemma,4,f4_dose3,selected detector,training-only selected threshold,frozen RQ2-core late decision direction,3 SD,1

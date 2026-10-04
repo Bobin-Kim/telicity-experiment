@@ -20,3 +20,6 @@ local_results/
 *.pth
 *.ckpt
 .DS_Store
+
+# Paper provenance copies (small summaries only; caches stay excluded by *.npz/*.npy)
+!paper_results/server/results/

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "candidate_counts": {
+    "Qwen": 12,
+    "Mistral": 35,
+    "DeepSeek": 35,
+    "Llama": 35,
+    "Gemma": 35
+  },
+  "candidate_cap": true,
+  "mistral_exactly_35": true,
+  "five_fold_coverage": true,
+  "rows_per_model": true,
+  "training_only_selection": true,
+  "constraints_met_observed": true,
+  "missing": 0,
+  "failed": 0,
+  "reuse_note": "Qwen reselected from saved candidate rows; DeepSeek/Llama/Gemma reuse completed <=35 searches; only Mistral generated new forwards."
+}

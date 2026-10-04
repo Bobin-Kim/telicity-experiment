@@ -1,0 +1,6 @@
+Mistral uses exactly seven candidates per outer fold (35 total).
+Detector layers are seven evenly spread zero-based depths: 0,5,10,16,21,26,31.
+Thresholds are training-score quantiles and strengths are even-valued points from the original 0..120 grid.
+The layer/quantile/strength pairing is fixed in MISTRAL_SEVEN before any matched-budget outcomes are computed.
+The actuator site remains the original final-RMSNorm exact readout; it was not a varying dimension in the original family.
+No prior held-out performance enters this subset.

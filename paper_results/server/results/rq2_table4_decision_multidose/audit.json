@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "expected_folds": 25,
+  "completed_valid_folds": 25,
+  "missing_or_invalid_folds": 0,
+  "failed_folds": 0,
+  "actual_forward_new_doses": [
+    0.5,
+    2.0,
+    3.0
+  ],
+  "reused_existing_table4_dose": 1.0,
+  "only_changed_parameter": "dose",
+  "max_abs_fresh_baseline_margin_error_vs_existing": 0.0,
+  "offline": true
+}
